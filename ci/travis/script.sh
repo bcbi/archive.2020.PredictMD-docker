@@ -14,7 +14,6 @@ pwd
 
 make build
 make test
-make test-long
 
 if [[ "$TRAVIS_BRANCH" == "master" ]]
 then
