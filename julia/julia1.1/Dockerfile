@@ -2,6 +2,7 @@ FROM dilumaluthge/latex_for_plotting:latest
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
+ENV JULIA_DEBUG=all
 ENV JULIA_DEPOT_PATH=/opt/julia
 
 ENV JULIA_MAJOR=1
@@ -19,6 +20,7 @@ RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
 RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia${JULIA_MINOR}
 RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia${JULIA_PATCH}
 
+RUN rm -rf $JULIA_DEPOT_PATH/compiled
 RUN julia -e 'import Pkg; Pkg.update();'
 RUN rm -rf $JULIA_DEPOT_PATH/compiled
 
