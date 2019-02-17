@@ -31,3 +31,13 @@ RUN rm -rf /tmp/runtests.sh
 RUN chmod 555 /opt/scripts/runtests.sh
 RUN ln -fs /opt/scripts/runtests.sh /bin/runtests.sh
 RUN chmod 555 /bin/runtests.sh
+
+RUN rm -rf /tmp/runtests-long.sh
+COPY runtests-long.sh /tmp/
+RUN mkdir -p /opt/scripts
+RUN touch /opt/scripts/runtests-long.sh
+RUN cat /tmp/runtests-long.sh >> /opt/scripts/runtests-long.sh
+RUN rm -rf /tmp/runtests-long.sh
+RUN chmod 555 /opt/scripts/runtests-long.sh
+RUN ln -fs /opt/scripts/runtests-long.sh /bin/runtests-long.sh
+RUN chmod 555 /bin/runtests-long.sh
