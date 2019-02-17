@@ -20,6 +20,7 @@ RUN apt-get install -yq --no-install-recommends \
     libpgf-dev \
     libpgf6 \
     libpgf6-dbg \
+    libpng-dev \
     libssl-dev \
     locales \
     nano \
@@ -32,10 +33,12 @@ RUN apt-get install -yq --no-install-recommends \
     texlive-binaries \
     texlive-latex-base \
     texlive-latex-extra \
+    texlive-luatex \
     texlive-pictures \
     tmux  \
     vim \
-    wget
+    wget \
+    zlib1g-dev
 RUN apt-get update
 RUN apt-get -yq dist-upgrade
 RUN apt-get update
