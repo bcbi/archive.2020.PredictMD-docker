@@ -1,0 +1,33 @@
+env:
+    global:
+        - DOCUMENTER_DEBUG="true"
+        - DOCKER_IMAGE_OWNER="dilumaluthge"
+        - JULIA_DEBUG="all"
+        - PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
+    matrix:
+        - IMAGE="julia1.1" FOLDER="julia"
+        # - IMAGE="predictmd_stable" FOLDER="predictmd"
+        # - IMAGE="predictmd_unstable" FOLDER="predictmd"
+        - IMAGE="latex_for_plotting" FOLDER="tex"
+
+git:
+    depth: 99999999
+
+language: bash
+
+matrix:
+    fast_finish: true
+
+notifications:
+    email:
+        on_failure: always
+        on_success: never
+os:
+    - linux
+
+services:
+    - docker
+
+############################################################################
+
+script: ./ci/travis/script.sh
