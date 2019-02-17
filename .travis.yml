@@ -5,11 +5,10 @@ env:
         - JULIA_DEBUG="all"
         - PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
     matrix:
-        - FOLDER="julia" IMAGE="julia1.1"
-        # - FOLDER="predictmd" IMAGE="predictmd_stable"
-        # - FOLDER="predictmd" IMAGE="predictmd_unstable"
-        - FOLDER="tex" IMAGE="latex_for_plotting"
-
+        - IMAGE="julia1.1" FOLDER="julia"
+        # - IMAGE="predictmd_stable" FOLDER="predictmd"
+        # - IMAGE="predictmd_unstable" FOLDER="predictmd"
+        - IMAGE="latex_for_plotting" FOLDER="tex"
 
 git:
     depth: 99999999
