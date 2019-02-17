@@ -4,4 +4,6 @@
 
 set -ev
 
+echo "Tests passed."
+
 ##### End of file

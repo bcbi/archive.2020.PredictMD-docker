@@ -4,17 +4,14 @@
 
 set -ev
 
-#!/bin/bash
+export GROUP="all"
+export PREDICTMD_TEST_GROUP="all"
+export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 
-##### Beginning of file
+julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMD;'
+julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDExtra;'
+julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDFull; PredictMDFull.import_all();'
 
-set -ev
-
-julia -e 'import PredictMD;'
-julia -e 'import PredictMDExtra;'
-julia -e 'import PredictMDFull;'
-
-##### End of file
-
+echo "Tests passed."
 
 ##### End of file
