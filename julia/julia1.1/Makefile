@@ -16,5 +16,5 @@ test-long: build
 login:
 	$(DOCKERCMD) login
 
-push: build login
+push: build
 	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
