@@ -53,9 +53,9 @@ RUN chmod 555 /opt/scripts/runtests.sh
 RUN ln -s /opt/scripts/runtests.sh /bin/runtests.sh
 RUN chmod 555 /bin/runtests.sh
 
-RUN rm -rf /opt/scripts/runtests-long.sh
+RUN rm -rf /opt/scripts/runtests-all.sh
 RUN mkdir -p /opt/scripts
-COPY runtests-long.sh /opt/scripts/
-RUN chmod 555 /opt/scripts/runtests-long.sh
-RUN ln -s /opt/scripts/runtests-long.sh /bin/runtests-long.sh
-RUN chmod 555 /bin/runtests-long.sh
+COPY runtests-all.sh /opt/scripts/
+RUN chmod 555 /opt/scripts/runtests-all.sh
+RUN ln -s /opt/scripts/runtests-all.sh /bin/runtests-all.sh
+RUN chmod 555 /bin/runtests-all.sh
