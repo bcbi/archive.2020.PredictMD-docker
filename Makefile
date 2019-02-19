@@ -10,10 +10,13 @@ test:
 	$(MAKE) -C julia/julia1.1 test
 	$(MAKE) -C predictmd/predictmd_unstable test
 
-test-long:
-	$(MAKE) -C tex/latex_for_plotting test-long
-	$(MAKE) -C julia/julia1.1 test-long
-	$(MAKE) -C predictmd/predictmd_unstable test-long
+testall:
+	@echo "I think you meant: make test-all"
+
+test-all:
+	$(MAKE) -C tex/latex_for_plotting test-all
+	$(MAKE) -C julia/julia1.1 test-all
+	$(MAKE) -C predictmd/predictmd_unstable test-all
 
 push:
 	$(MAKE) -C tex/latex_for_plotting push

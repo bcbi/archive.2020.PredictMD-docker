@@ -10,8 +10,11 @@ build:
 test: build
 	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "runtests.sh"
 
-test-long: build
-	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "runtests-long.sh"
+testall:
+	@echo "I think you meant: make test-all"
+
+test-all: build
+	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "runtests-all.sh"
 
 login:
 	$(DOCKERCMD) login
