@@ -5,15 +5,11 @@ MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 ENV JULIA_DEPOT_PATH=/opt/julia
 
 RUN rm -rf $JULIA_DEPOT_PATH/compiled
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.update();'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.Registry.update();'
+RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.update();'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.Registry.add(Pkg.Registry.RegistrySpec(url="https://github.com/JuliaRegistries/General"));'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.update();'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.Registry.update();'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.update();'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.Registry.update();'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.update();'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.Registry.update();'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMD.jl", rev="develop"));'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.build("PredictMD");'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDExtra.jl", rev="develop")); '
