@@ -1,3 +1,5 @@
+DOCKERCMD = docker
+
 default: build
 
 build:
@@ -17,6 +19,9 @@ test-all:
 	$(MAKE) -C tex/latex_for_plotting test-all
 	$(MAKE) -C julia/julia1.1 test-all
 	$(MAKE) -C predictmd/predictmd_unstable test-all
+
+login:
+	$(DOCKERCMD) login
 
 push:
 	$(MAKE) -C tex/latex_for_plotting push
