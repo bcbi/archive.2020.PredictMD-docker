@@ -2,43 +2,28 @@ FROM dilumaluthge/latex_for_plotting:latest
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
-ENV JULIA_DEPOT_PATH=/opt/julia
+RUN apt-get update && apt-get -yq dist-upgrade \
+    && apt-get install -yq --no-install-recommends gpg \
+    && apt-get clean
+    
+# UPDATE THIS TO UPGRADE JULIA VERSION
+ENV JULIA_VERSION 1.1.0
 
-ENV _JULIA_MAJOR=1
-ENV _JULIA_MAJOR_MINOR=1.1
-ENV _JULIA_MAJOR_MINOR_PATCH=1.1.0
-ENV _JULIA_URL=https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz
-ENV _JULIA_SHA256=80cfd013e526b5145ec3254920afd89bb459f1db7a2a3f21849125af20c05471
-RUN mkdir /opt/julia-${_JULIA_MAJOR_MINOR_PATCH} && \
+# get GPG key and install it to key ring, download and install julia
+RUN cd /tmp && \
+    wget -q https://julialang.org/juliareleases.asc && \
+    gpg --import juliareleases.asc && \
+    JULIA_MAJOR_VERSION=$(echo $JULIA_VERSION | cut -c1-3) && \
+    JULIA_FILE=$(echo julia-$JULIA_VERSION-linux-x86_64.tar.gz) && \
+    JULIA_URL=$(echo https://julialang-s3.julialang.org/bin/linux/x64/$JULIA_MAJOR_VERSION/$JULIA_FILE) && \
+    mkdir /opt/julia && \
     cd /tmp && \
-    wget -q ${_JULIA_URL} && \
-    echo "${_JULIA_SHA256} *julia-${_JULIA_MAJOR_MINOR_PATCH}-linux-x86_64.tar.gz" | sha256sum -c - && \
-    tar xzf julia-${_JULIA_MAJOR_MINOR_PATCH}-linux-x86_64.tar.gz -C /opt/julia-${_JULIA_MAJOR_MINOR_PATCH} --strip-components=1 && \
-    rm /tmp/julia-${_JULIA_MAJOR_MINOR_PATCH}-linux-x86_64.tar.gz
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia${_JULIA_MAJOR_MINOR}
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia${_JULIA_MAJOR_MINOR_PATCH}
+    wget -q $JULIA_URL && \
+    wget -q $(echo $JULIA_URL.asc) && \
+    gpg --verify $JULIA_FILE.asc && \
+    tar xzf $JULIA_FILE -C /opt/julia --strip-components=1 && \
+    rm /tmp/$JULIA_FILE
 
-RUN rm -rf $JULIA_DEPOT_PATH/compiled
-RUN julia -e 'import Pkg; Pkg.update();'
-RUN rm -rf $JULIA_DEPOT_PATH/compiled
+RUN ln -fs /opt/julia/bin/julia /usr/local/bin/julia
 
-RUN rm -rf /tmp/runtests.sh
-COPY runtests.sh /tmp/
-RUN mkdir -p /opt/scripts
-RUN touch /opt/scripts/runtests.sh
-RUN cat /tmp/runtests.sh >> /opt/scripts/runtests.sh
-RUN rm -rf /tmp/runtests.sh
-RUN chmod 555 /opt/scripts/runtests.sh
-RUN ln -fs /opt/scripts/runtests.sh /bin/runtests.sh
-RUN chmod 555 /bin/runtests.sh
-
-RUN rm -rf /tmp/runtests-all.sh
-COPY runtests-all.sh /tmp/
-RUN mkdir -p /opt/scripts
-RUN touch /opt/scripts/runtests-all.sh
-RUN cat /tmp/runtests-all.sh >> /opt/scripts/runtests-all.sh
-RUN rm -rf /tmp/runtests-all.sh
-RUN chmod 555 /opt/scripts/runtests-all.sh
-RUN ln -fs /opt/scripts/runtests-all.sh /bin/runtests-all.sh
-RUN chmod 555 /bin/runtests-all.sh
+RUN rm -rf /opt/julia/share/julia/compiled
