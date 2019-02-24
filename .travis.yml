@@ -6,11 +6,6 @@ env:
         - DOCKER_IMAGE_OWNER="dilumaluthge"
         - JULIA_DEBUG="all"
         - PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
-    matrix:
-        - IMAGE="julia1.1" FOLDER="julia"
-        # - IMAGE="predictmd_stable" FOLDER="predictmd"
-        - IMAGE="predictmd_unstable" FOLDER="predictmd"
-        - IMAGE="latex_for_plotting" FOLDER="tex"
 
 git:
     depth: 99999999
@@ -32,6 +27,51 @@ services:
 
 ############################################################################
 
-script: ./ci/travis/script.sh
+before_install:
+    - true
+install:
+    - true
+before_script:
+    - true
+script:
+    - true
+after_script:
+    - true
+
+############################################################################
+
+stages:
+    - stage-1
+    - stage-2
+    - stage-3
+
+############################################################################
+
+jobs:
+    include:
+        - stage: stage-1
+          name: "Stage 1"
+          env:
+              - IMAGE="julia1.1"
+              - FOLDER="julia"
+          script: ./ci/travis/script.sh
+        - stage: stage-2
+          name: "Stage 2"
+          env:
+              - IMAGE="latex_for_plotting"
+              - FOLDER="tex"
+          script: ./ci/travis/script.sh
+        - stage: stage-3
+          name: "Stage 3"
+          env:
+              - IMAGE="predictmd_stable"
+              - FOLDER="predictmd"
+          script: true
+        - stage: stage-3
+          name: "Stage 3"
+          env:
+              - IMAGE="predictmd_unstable"
+              - FOLDER="predictmd"
+          script: ./ci/travis/script.sh
 
 ############################################################################
