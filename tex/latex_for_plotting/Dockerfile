@@ -16,6 +16,7 @@ RUN apt-get install -yq --no-install-recommends \
     gettext \
     gfortran \
     git \
+    gpg \
     libcurl4-openssl-dev \
     libpgf-dev \
     libpgf6 \
@@ -46,16 +47,12 @@ RUN apt-get -yq dist-upgrade
 
 RUN apt-get clean
 
-RUN rm -rf /opt/scripts/runtests.sh
-RUN mkdir -p /opt/scripts
-COPY runtests.sh /opt/scripts/
-RUN chmod 555 /opt/scripts/runtests.sh
-RUN ln -s /opt/scripts/runtests.sh /bin/runtests.sh
-RUN chmod 555 /bin/runtests.sh
+RUN rm -rf /opt/predictmd/docker/bin/runtests.sh
+RUN mkdir -p /opt/predictmd/docker/bin
+COPY runtests.sh  /opt/predictmd/docker/bin/
+RUN chmod 555 /opt/predictmd/docker/bin/runtests.sh
 
-RUN rm -rf /opt/scripts/runtests-all.sh
-RUN mkdir -p /opt/scripts
-COPY runtests-all.sh /opt/scripts/
-RUN chmod 555 /opt/scripts/runtests-all.sh
-RUN ln -s /opt/scripts/runtests-all.sh /bin/runtests-all.sh
-RUN chmod 555 /bin/runtests-all.sh
+RUN rm -rf /opt/predictmd/docker/bin/runtests-all.sh
+RUN mkdir -p /opt/predictmd/docker/bin
+COPY runtests.sh-all  /opt/predictmd/docker/bin/
+RUN chmod 555 /opt/predictmd/docker/bin/runtests-all.sh
