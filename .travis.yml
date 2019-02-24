@@ -1,5 +1,10 @@
 ############################################################################
 
+branches:
+    except:
+    - staging.tmp
+    - trying.tmp
+
 env:
     global:
         - DOCUMENTER_DEBUG="true"
