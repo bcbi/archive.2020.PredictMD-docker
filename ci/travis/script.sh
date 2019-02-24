@@ -28,4 +28,7 @@ else
     :
 fi
 
+make docker-purge-all
+
 ##### End of file
+
