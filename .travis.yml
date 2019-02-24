@@ -1,9 +1,13 @@
 ############################################################################
 
 branches:
-    except:
-    - staging.tmp
-    - trying.tmp
+    only:
+    - develop
+    - master
+    - staging
+    - trying
+    - /^release\/.*$/ # release branches
+    - /^v[0-9]+\.[0-9]+\.[0-9]+$/ # version tags
 
 env:
     global:
