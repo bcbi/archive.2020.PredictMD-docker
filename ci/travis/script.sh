@@ -28,4 +28,11 @@ else
     :
 fi
 
+pwd
+cd $TRAVIS_BUILD_DIR
+pwd
+
+make docker-purge-all
+
 ##### End of file
+

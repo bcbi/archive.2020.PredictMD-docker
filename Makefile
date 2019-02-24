@@ -36,77 +36,9 @@ test-all:
 
 ##############################################################################
 
-.PHONY: docker-purge-all _docker-purge-all
-
-.PHONY: docker-image-purge _docker-image-purge
-
-.PHONY: docker-remove-exited-containers _docker-remove-exited-containers
-
-.PHONY: docker-remove-all-images _docker-remove-all-images
-
-.PHONY: docker-stop-remove-all-containers _docker-stop-remove-all-containers
-
-.PHONY: docker-system-prune _docker-system-prune
-
-.PHONY: docker-volume-prune _docker-volume-prune
+.PHONY: docker-purge-all
 
 docker-purge-all:
-	$(MAKE) _docker-purge-all
-	$(MAKE) _docker-purge-all
-	$(MAKE) _docker-purge-all
-	@echo "make docker-purge-all ran successfully"
-
-_docker-purge-all: docker-image-purge docker-remove-exited-containers\
-	docker-remove-all-images docker-stop-remove-all-containers\
-	docker-system-prune docker-volume-prune
-
-docker-image-purge:
-	$(MAKE) _docker-image-purge
-	$(MAKE) _docker-image-purge
-	$(MAKE) _docker-image-purge
-
-_docker-image-purge:
-	docker images purge
-
-docker-remove-exited-containers:
-	$(MAKE) _docker-remove-exited-containers
-	$(MAKE) _docker-remove-exited-containers
-	$(MAKE) _docker-remove-exited-containers
-
-_docker-remove-exited-containers:
-	docker rm $(docker ps -a -f status=exited -q) || echo "None found."
-
-docker-remove-all-images:
-	$(MAKE) _docker-remove-all-images
-	$(MAKE) _docker-remove-all-images
-	$(MAKE) _docker-remove-all-images
-
-_docker-remove-all-images:
-	docker rmi $(docker images -a -q) || echo "None found."
-
-docker-stop-remove-all-containers:
-	$(MAKE) _docker-stop-remove-all-containers
-	$(MAKE) _docker-stop-remove-all-containers
-	$(MAKE) _docker-stop-remove-all-containers
-
-_docker-stop-remove-all-containers:
-	docker stop $(docker ps -a -q) || echo "None found."
-	docker rm $(docker ps -a -q) || echo "None found."
-
-docker-system-prune:
-	$(MAKE) _docker-system-prune
-	$(MAKE) _docker-system-prune
-	$(MAKE) _docker-system-prune
-
-_docker-system-prune:
-	docker system prune --all --force
-
-docker-volume-prune:
-	$(MAKE) _docker-volume-prune
-	$(MAKE) _docker-volume-prune
-	$(MAKE) _docker-volume-prune
-
-_docker-volume-prune:
-	docker volume prune --force
+	echo "1" | ./scripts/docker-purge-all.sh
 
 ##############################################################################
