@@ -41,7 +41,7 @@ RUN mkdir -p /opt/predictmd/docker/bin
 RUN touch /opt/predictmd/docker/bin/runtests.sh
 RUN cat /tmp/runtests.sh >> /opt/predictmd/docker/bin/runtests.sh
 RUN rm -rf /tmp/runtests.sh
-RUN chmod 555/opt/predictmd/docker/bin/runtests.sh
+RUN chmod 555 /opt/predictmd/docker/bin/runtests.sh
 
 RUN rm -rf /tmp/runtests-all.sh
 COPY runtests-all.sh /tmp/
@@ -49,4 +49,4 @@ RUN mkdir -p /opt/predictmd/docker/bin
 RUN touch /opt/predictmd/docker/bin/runtests-all.sh
 RUN cat /tmp/runtests-all.sh >> /opt/predictmd/docker/bin/runtests-all.sh
 RUN rm -rf /tmp/runtests-all.sh
-RUN chmod 555/opt/predictmd/docker/bin/runtests-all.sh
+RUN chmod 555 /opt/predictmd/docker/bin/runtests-all.sh
