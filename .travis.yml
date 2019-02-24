@@ -1,9 +1,13 @@
 ############################################################################
 
 branches:
-    except:
-    - staging.tmp
-    - trying.tmp
+    only:
+    - develop
+    - master
+    - staging
+    - trying
+    - /^release\/.*$/ # release branches
+    - /^v[0-9]+\.[0-9]+\.[0-9]+$/ # version tags
 
 env:
     global:
@@ -46,33 +50,34 @@ after_script:
 ############################################################################
 
 stages:
-    - stage-1
-    - stage-2
-    - stage-3
+    - "Stage 1 (tex)"
+    - "Stage 2 (julia)"
+    - "Stage 3 (predictmd)"
 
 ############################################################################
 
 jobs:
     include:
-        - stage: stage-1
-          name: "dilumaluthge/julia1.1"
-          env:
-              - IMAGE="julia1.1"
-              - FOLDER="julia"
-          script: ./ci/travis/script.sh
-        - stage: stage-2
+        - stage: "Stage 1 (tex)"
           name: "dilumaluthge/latex_for_plotting"
           env:
               - IMAGE="latex_for_plotting"
               - FOLDER="tex"
           script: ./ci/travis/script.sh
-        - stage: stage-3
+        - stage: "Stage 2 (julia)"
+          name: "dilumaluthge/julia1.1"
+          env:
+              - IMAGE="julia1.1"
+              - FOLDER="julia"
+          script: ./ci/travis/script.sh
+
+        - stage: "Stage 3 (predictmd)"
           name: "dilumaluthge/predictmd_stable"
           env:
               - IMAGE="predictmd_stable"
               - FOLDER="predictmd"
           script: true
-        - stage: stage-3
+        - stage: "Stage 3 (predictmd)"
           name: "dilumaluthge/predictmd_unstable"
           env:
               - IMAGE="predictmd_unstable"
