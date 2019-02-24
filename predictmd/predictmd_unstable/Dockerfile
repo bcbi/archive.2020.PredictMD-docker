@@ -33,7 +33,7 @@ RUN cd /opt/julia/share/julia/registries && \
     git commit -m "updating registry details for stronghold" && \
     git remote remove origin
 
-COPY ../../julia_scripts/sh_startup.jl /opt/julia/etc/julia/startup.jl
+COPY julia_scripts/sh_startup.jl /opt/julia/etc/julia/startup.jl
 
 RUN rm -rf /tmp/runtests.sh
 COPY runtests.sh /tmp/
