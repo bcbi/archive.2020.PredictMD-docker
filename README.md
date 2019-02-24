@@ -1,6 +1,4 @@
 # PredictMD-docker: Docker files for PredictMD
-
-# PredictMDExtra - Install all dependencies of PredictMD
 # Main repository: [bcbi/PredictMD.jl](https://github.com/bcbi/PredictMD.jl)
 # Website: [https://predictmd.net](https://predictmd.net)
 
