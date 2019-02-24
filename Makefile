@@ -66,7 +66,7 @@ docker-image-purge:
 	$(MAKE) _docker-image-purge
 
 _docker-image-purge:
-	docker images purge
+	$(DOCKERCMD) images purge
 
 docker-remove-exited-containers:
 	$(MAKE) _docker-remove-exited-containers
@@ -74,7 +74,7 @@ docker-remove-exited-containers:
 	$(MAKE) _docker-remove-exited-containers
 
 _docker-remove-exited-containers:
-	docker rm $(docker ps -a -f status=exited -q) || echo "None found."
+	$(DOCKERCMD) rm $(docker ps -a -f status=exited -q) || echo "None found."
 
 docker-remove-all-images:
 	$(MAKE) _docker-remove-all-images
@@ -82,7 +82,7 @@ docker-remove-all-images:
 	$(MAKE) _docker-remove-all-images
 
 _docker-remove-all-images:
-	docker rmi $(docker images -a -q) || echo "None found."
+	$(DOCKERCMD) rmi $(docker images -a -q) || echo "None found."
 
 docker-stop-remove-all-containers:
 	$(MAKE) _docker-stop-remove-all-containers
@@ -90,8 +90,8 @@ docker-stop-remove-all-containers:
 	$(MAKE) _docker-stop-remove-all-containers
 
 _docker-stop-remove-all-containers:
-	docker stop $(docker ps -a -q) || echo "None found."
-	docker rm $(docker ps -a -q) || echo "None found."
+	$(DOCKERCMD) stop $(docker ps -a -q) || echo "None found."
+	$(DOCKERCMD) rm $(docker ps -a -q) || echo "None found."
 
 docker-system-prune:
 	$(MAKE) _docker-system-prune
@@ -99,7 +99,7 @@ docker-system-prune:
 	$(MAKE) _docker-system-prune
 
 _docker-system-prune:
-	docker system prune --all --force
+	$(DOCKERCMD) system prune --all --force
 
 docker-volume-prune:
 	$(MAKE) _docker-volume-prune
@@ -107,6 +107,6 @@ docker-volume-prune:
 	$(MAKE) _docker-volume-prune
 
 _docker-volume-prune:
-	docker volume prune --force
+	$(DOCKERCMD) volume prune --force
 
 ##############################################################################
