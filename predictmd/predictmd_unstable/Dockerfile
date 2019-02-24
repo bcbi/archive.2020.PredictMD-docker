@@ -6,6 +6,7 @@ RUN apt-get update
 RUN apt-get -yq dist-upgrade
 RUN apt-get update
 RUN apt-get -yq dist-upgrade
+RUN apt-get clean
 
 ENV JULIA_DEPOT_PATH=/opt/julia
 

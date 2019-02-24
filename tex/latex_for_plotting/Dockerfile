@@ -44,7 +44,6 @@ RUN apt-get update
 RUN apt-get -yq dist-upgrade
 RUN apt-get update
 RUN apt-get -yq dist-upgrade
-
 RUN apt-get clean
 
 RUN rm -rf /opt/predictmd/docker/bin/runtests.sh

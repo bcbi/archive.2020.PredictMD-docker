@@ -6,22 +6,24 @@ RUN apt-get update
 RUN apt-get -yq dist-upgrade
 RUN apt-get update
 RUN apt-get -yq dist-upgrade
-
-# Update this to upgrade Julia version
-ENV JULIA_VERSION 1.1.0
+RUN apt-get clean
 
 ENV JULIA_DEPOT_PATH=/opt/julia
+ENV JULIA_VERSION 1.1.0
 
-
-
-
-ENV _JULIA_URL=https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz
-
-
-
-ENV _JULIA_SHA256=80cfd013e526b5145ec3254920afd89bb459f1db7a2a3f21849125af20c05471
-
-
+RUN cd /tmp && \
+    wget -q https://julialang.org/juliareleases.asc && \
+    gpg --import juliareleases.asc && \
+    JULIA_MAJOR_VERSION=$(echo $JULIA_VERSION | cut -c1-3) && \
+    JULIA_FILE=$(echo julia-$JULIA_VERSION-linux-x86_64.tar.gz) && \
+    JULIA_URL=$(echo https://julialang-s3.julialang.org/bin/linux/x64/$JULIA_MAJOR_VERSION/$JULIA_FILE) && \
+    mkdir /opt/julia && \
+    cd /tmp && \
+    wget -q $JULIA_URL && \
+    wget -q $(echo $JULIA_URL.asc) && \
+    gpg --verify $JULIA_FILE.asc && \
+    tar xzf $JULIA_FILE -C /opt/julia --strip-components=1 && \
+    rm /tmp/$JULIA_FILE
 
 RUN mkdir /opt/julia-${_JULIA_MAJOR_MINOR_PATCH} && \
     cd /tmp && \
@@ -29,9 +31,8 @@ RUN mkdir /opt/julia-${_JULIA_MAJOR_MINOR_PATCH} && \
     echo "${_JULIA_SHA256} *julia-${_JULIA_MAJOR_MINOR_PATCH}-linux-x86_64.tar.gz" | sha256sum -c - && \
     tar xzf julia-${_JULIA_MAJOR_MINOR_PATCH}-linux-x86_64.tar.gz -C /opt/julia-${_JULIA_MAJOR_MINOR_PATCH} --strip-components=1 && \
     rm /tmp/julia-${_JULIA_MAJOR_MINOR_PATCH}-linux-x86_64.tar.gz
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia${_JULIA_MAJOR_MINOR}
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia${_JULIA_MAJOR_MINOR_PATCH}
+
+RUN ln -fs /opt/julia/bin/julia /usr/local/bin/julia
 
 RUN rm -rf $JULIA_DEPOT_PATH/compiled
 RUN julia -e 'import Pkg; Pkg.update();'
