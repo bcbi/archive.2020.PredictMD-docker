@@ -1,10 +1,11 @@
-i#!/bin/bash
+#!/bin/bash
 
 ##### Beginning of file
 
 set -ev
 
 whoami
+id
 id -u
 id -ru
 id -g

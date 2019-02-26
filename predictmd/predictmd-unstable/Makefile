@@ -2,13 +2,11 @@ DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
 DOCKER_IMAGE_NAME = predictmd-unstable
 
-.PHONY: default
-
-default: build
-
 ##############################################################################
 
-.PHONY: build push login test test-all testall
+.PHONY: default build push login test test-all testall
+
+default: build
 
 build:
 	cd builddir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
@@ -21,10 +19,11 @@ push: build
 
 test: build
 	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
-	$(DOCKERCMD) run --user predictmdtestuser -v $(PWD)/testdir:/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/dockerdir/runtests.sh; "
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/bin/runtests.sh;"
 
 test-all: build
-	true
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/bin/runtests.sh; /bin/runtests-all.sh;"
 
 testall:
 	@echo "I think you meant: make test-all"

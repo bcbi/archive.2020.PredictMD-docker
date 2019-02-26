@@ -1,5 +1,4 @@
 FROM dilumaluthge/latex-for-plotting:latest
-
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
 RUN apt-get update
@@ -10,31 +9,27 @@ RUN apt-get clean
 
 ENV JULIA_DEPOT_PATH=/opt/julia/share/julia
 RUN mkdir -p $JULIA_DEPOT_PATH
-
 RUN rm -rf $JULIA_DEPOT_PATH/compiled/*
-
-RUN rm -rf /opt/julia/etc/julia/startup.jl
-
 RUN rm -rf $JULIA_DEPOT_PATH/registries
+RUN rm -rf /opt/julia/etc/julia/startup.jl
 
 RUN julia -e 'import Pkg; Pkg.Registry.update();  '
 RUN julia -e 'import Pkg; Pkg.Registry.add(Pkg.Registry.RegistrySpec(url="https://github.com/JuliaRegistries/General"));  '
 RUN julia -e 'import Pkg; Pkg.Registry.update(); '
 
 RUN julia -e 'import Pkg; Pkg.rm("HTTP")'
-
 RUN julia -e 'import Pkg; Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMD.jl", rev="develop"));'
 RUN julia -e 'import Pkg; Pkg.build("PredictMD");'
 RUN julia -e 'import Pkg; Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDExtra.jl", rev="develop")); '
 RUN julia -e 'import Pkg; Pkg.build("PredictMDExtra");'
 RUN julia -e 'import Pkg; Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDFull.jl", rev="develop")); '
 RUN julia -e 'import Pkg; Pkg.build("PredictMDFull");'
-
 RUN julia -e 'import Pkg; Pkg.add("HTTP")'
 
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; import PredictMD;'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; import PredictMDExtra;'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; import PredictMDFull;'
+RUN julia -e 'import Pkg; Pkg.add("DataDeps")'
+RUN julia -e 'import Pkg; Pkg.add("Flux")'
+RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import DataDeps;'
+RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Flux;'
 
 RUN cd /opt/julia/share/julia/registries && \
     mv General StrongHoldGeneral && \
@@ -50,8 +45,6 @@ RUN cd /opt/julia/share/julia/registries && \
 
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 COPY sh_startup.jl /opt/julia/etc/julia/sh_startup.jl
-
-RUN find $JULIA_DEPOT_PATH/packages -type d -print0 | xargs -0 chmod 755
-RUN find $JULIA_DEPOT_PATH/packages -type f -print0 | xargs -0 chmod 644
-
+RUN find $JULIA_DEPOT_PATH/packages/Pred* -type d -print0 | xargs -0 chmod 755
+RUN find $JULIA_DEPOT_PATH/packages/Pred* -type f -print0 | xargs -0 chmod 644
 RUN rm -rf $JULIA_DEPOT_PATH/compiled/*

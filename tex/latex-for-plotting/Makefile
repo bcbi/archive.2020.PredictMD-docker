@@ -2,13 +2,11 @@ DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
 DOCKER_IMAGE_NAME = latex-for-plotting
 
-.PHONY: default
-
-default: build
-
 ##############################################################################
 
-.PHONY: build push login test test-all testall
+.PHONY: default build push login test test-all testall
+
+default: build
 
 build:
 	cd builddir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .

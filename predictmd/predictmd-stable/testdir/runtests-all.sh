@@ -5,6 +5,7 @@
 set -ev
 
 whoami
+id
 id -u
 id -ru
 id -g

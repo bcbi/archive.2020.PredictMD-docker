@@ -5,6 +5,7 @@
 set -ev
 
 whoami
+id
 id -u
 id -ru
 id -g
@@ -14,11 +15,25 @@ export GROUP="all"
 export PREDICTMD_TEST_GROUP="all"
 export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 
-# pushfirst!(DEPOT_PATH, joinpath(homedir(), ".julia"));
+mkdir -p $HOME/.julia
 
-julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMD;'
-julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDExtra;'
-julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDFull;'
+julia -e '
+    ENV["JULIA_DEBUG"] = "all";
+    pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
+    unique!(Base.DEPOT_PATH);
+    import Flux;'
+
+julia -e '
+    ENV["JULIA_DEBUG"] = "all";
+    pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
+    unique!(Base.DEPOT_PATH);
+    import PredictMDExtra;'
+
+julia -e '
+    ENV["JULIA_DEBUG"] = "all";
+    pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
+    unique!(Base.DEPOT_PATH);
+    import PredictMDFull;'
 
 echo "predictmd-unstable: runtests.sh: Tests passed."
 

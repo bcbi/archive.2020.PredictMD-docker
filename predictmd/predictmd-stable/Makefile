@@ -2,13 +2,11 @@ DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
 DOCKER_IMAGE_NAME = predictmd-stable
 
-.PHONY: default
-
-default: build
-
 ##############################################################################
 
-.PHONY: build push login test test-all testall
+.PHONY: default build push login test test-all testall
+
+default: build
 
 build:
 	# $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
