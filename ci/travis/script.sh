@@ -7,6 +7,10 @@ set -ev
 pwd
 cd $TRAVIS_BUILD_DIR
 pwd
+
+make docker-purge-all
+
+pwd
 cd $FOLDER
 pwd
 cd $IMAGE
@@ -35,4 +39,3 @@ pwd
 make docker-purge-all
 
 ##### End of file
-

@@ -6,6 +6,6 @@ set -ev
 
 latex --version
 
-echo "Tests passed."
+echo "dilumaluthge/predictmd-stable: runtests.sh: Tests passed."
 
 ##### End of file
