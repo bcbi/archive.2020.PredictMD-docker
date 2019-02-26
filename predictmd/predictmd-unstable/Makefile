@@ -22,7 +22,8 @@ push: build
 
 test: build
 	cp -fv ../../common/su-test-user.sh .
-	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/su-test-user.sh; /dockerdir/runtests.sh; "
+	# $(DOCKERCMD) run -v $(PWD):/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/su-test-user.sh; /dockerdir/runtests.sh; "
+	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/run-as-test-user 1 2 3 4 5; "
 
 test-all: build
 	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none --user 1000:1000 -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests-all.sh"
