@@ -13,6 +13,7 @@ RUN apt-get install -yq --no-install-recommends \
     ca-certificates \
     cmake \
     coreutils \
+    curl \
     emacs  \
     gettext \
     gfortran \
