@@ -53,4 +53,4 @@ COPY sh_startup.jl /opt/julia/etc/julia/sh_startup.jl
 
 RUN rm -rf $JULIA_DEPOT_PATH/compiled
 
-RUN chmod -Rv +r $JULIA_DEPOT_PATH
+RUN chmod -R +r $JULIA_DEPOT_PATH
