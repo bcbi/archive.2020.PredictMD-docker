@@ -35,6 +35,6 @@ test-all:
 .PHONY: docker-purge-all
 
 docker-purge-all:
-	echo "1" | ./scripts/docker-purge-all.sh
+	echo "1" | ./utils/docker-purge-all.sh
 
 ##############################################################################

@@ -1,6 +1,6 @@
 DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
-DOCKER_IMAGE_NAME = predictmd_unstable
+DOCKER_IMAGE_NAME = predictmd-unstable
 
 .PHONY: default
 
@@ -11,8 +11,7 @@ default: build
 .PHONY: build push login test test-all testall
 
 build:
-	cp -fv ../../common/sh_startup.jl .
-	$(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
+	cd builddir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
 
 login:
 	$(DOCKERCMD) login
@@ -21,9 +20,8 @@ push: build
 	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
 
 test: build
-	cp -fv ../../common/su-test-user.sh .
-	# $(DOCKERCMD) run -v $(PWD):/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/su-test-user.sh; /dockerdir/runtests.sh; "
-	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/run-as-test-user 1 2 3 4 5; "
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
+	$(DOCKERCMD) run --user predictmdtestuser -v $(PWD)/testdir:/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/dockerdir/runtests.sh; "
 
 test-all: build
 	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none --user 1000:1000 -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests-all.sh"

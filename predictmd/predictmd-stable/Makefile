@@ -1,6 +1,6 @@
 DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
-DOCKER_IMAGE_NAME = predictmd_stable
+DOCKER_IMAGE_NAME = predictmd-stable
 
 .PHONY: default
 

@@ -50,3 +50,7 @@ RUN cd /opt/julia/share/julia/registries && \
 
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 COPY sh_startup.jl /opt/julia/etc/julia/sh_startup.jl
+
+RUN rm -rf $JULIA_DEPOT_PATH/compiled
+
+RUN chmod -Rv +r $JULIA_DEPOT_PATH

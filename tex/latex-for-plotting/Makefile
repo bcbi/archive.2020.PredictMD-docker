@@ -11,7 +11,7 @@ default: build
 .PHONY: build push login test test-all testall
 
 build:
-	cd builddir; $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .;
+	cd builddir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
 
 login:
 	$(DOCKERCMD) login
