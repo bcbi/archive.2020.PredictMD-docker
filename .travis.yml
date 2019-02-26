@@ -51,8 +51,7 @@ after_script:
 
 stages:
     - "Stage 1 (tex)"
-    - "Stage 2 (julia)"
-    - "Stage 3 (predictmd)"
+    - "Stage 2 (predictmd)"
 
 ############################################################################
 
@@ -64,20 +63,14 @@ jobs:
               - IMAGE="latex_for_plotting"
               - FOLDER="tex"
           script: ./ci/travis/script.sh
-        - stage: "Stage 2 (julia)"
-          name: "dilumaluthge/julia1.1"
-          env:
-              - IMAGE="julia1.1"
-              - FOLDER="julia"
-          script: ./ci/travis/script.sh
 
-        - stage: "Stage 3 (predictmd)"
+        - stage: "Stage 2 (predictmd)"
           name: "dilumaluthge/predictmd_stable"
           env:
               - IMAGE="predictmd_stable"
               - FOLDER="predictmd"
           script: true
-        - stage: "Stage 3 (predictmd)"
+        - stage: "Stage 2 (predictmd)"
           name: "dilumaluthge/predictmd_unstable"
           env:
               - IMAGE="predictmd_unstable"

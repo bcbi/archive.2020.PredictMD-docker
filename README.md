@@ -32,12 +32,6 @@
 | ---- | ---------- | ----- |
 | `predictmd_unstable` | [Dockerfile](/predictmd/predictmd_unstable/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd_unstable"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd_unstable.svg"></a> |
 
-### Julia
-
-| Name | Dockerfile | Image |
-| ---- | ---------- | ----- |
-| `julia1.1` | [Dockerfile](/julia/julia1.1/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/julia1.1"><img src="https://images.microbadger.com/badges/image/dilumaluthge/julia1.1.svg"></a> |
-
 ### TeX
 
 | Name | Dockerfile | Image |
