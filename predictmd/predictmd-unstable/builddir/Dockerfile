@@ -11,6 +11,8 @@ RUN apt-get clean
 ENV JULIA_DEPOT_PATH=/opt/julia/share/julia
 RUN mkdir -p $JULIA_DEPOT_PATH
 
+RUN rm -rf $JULIA_DEPOT_PATH/compiled/*
+
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 
 RUN rm -rf $JULIA_DEPOT_PATH/registries
@@ -46,7 +48,10 @@ RUN cd /opt/julia/share/julia/registries && \
     git commit -m "updating registry details for stronghold" && \
     git remote remove origin
 
-RUN /bin/bash -c "chmod -R +r $JULIA_DEPOT_PATH"
-
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 COPY sh_startup.jl /opt/julia/etc/julia/sh_startup.jl
+
+RUN find $JULIA_DEPOT_PATH/packages -type d -print0 | xargs -0 chmod 755
+RUN find $JULIA_DEPOT_PATH/packages -type f -print0 | xargs -0 chmod 644
+
+RUN rm -rf $JULIA_DEPOT_PATH/compiled/*

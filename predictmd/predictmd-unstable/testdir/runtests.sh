@@ -14,13 +14,7 @@ export GROUP="all"
 export PREDICTMD_TEST_GROUP="all"
 export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 
-mkdir -p $HOME/.julia/environments/v1.1
-cp -fv /opt/julia/share/julia/environments/v1.1/Project.toml $HOME/.julia/environments/v1.1
-cp -fv /opt/julia/share/julia/environments/v1.1/Manifest.toml $HOME/.julia/environments/v1.1
-
-pushfirst!(DEPOT_PATH, joinpath(homedir(), ".julia"))
-
-empty!(DEPOT_PATH)
+# pushfirst!(DEPOT_PATH, joinpath(homedir(), ".julia"));
 
 julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMD;'
 julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDExtra;'
