@@ -21,7 +21,7 @@ julia -e '
     ENV["JULIA_DEBUG"] = "all";
     pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
     unique!(Base.DEPOT_PATH);
-    import Flux;'
+    import PredictMD;'
 
 julia -e '
     ENV["JULIA_DEBUG"] = "all";

@@ -15,24 +15,25 @@ export GROUP="all"
 export PREDICTMD_TEST_GROUP="all"
 export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 
+mkdir -p $HOME/.julia
+
 julia -e '
     ENV["JULIA_DEBUG"] = "all";
-    pushfirst!(DEPOT_PATH,"/opt/julia/share/julia");
-    pushfirst!(DEPOT_PATH,joinpath(homedir(),".julia",),);
-    import PredictMD;
-    '
+    pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
+    unique!(Base.DEPOT_PATH);
+    import PredictMD;'
+
 julia -e '
     ENV["JULIA_DEBUG"] = "all";
-    pushfirst!(DEPOT_PATH,"/opt/julia/share/julia");
-    pushfirst!(DEPOT_PATH,joinpath(homedir(),".julia",),);
-    import PredictMDExtra;
-    '
+    pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
+    unique!(Base.DEPOT_PATH);
+    import PredictMDExtra;'
+
 julia -e '
     ENV["JULIA_DEBUG"] = "all";
-    pushfirst!(DEPOT_PATH,"/opt/julia/share/julia");
-    pushfirst!(DEPOT_PATH,joinpath(homedir(),".julia",),);
-    import PredictMDFull;
-    '
+    pushfirst!(Base.DEPOT_PATH, joinpath(homedir(), ".julia"));
+    unique!(Base.DEPOT_PATH);
+    import PredictMDFull;'
 
 echo "predictmd-stable: runtests.sh: Tests passed."
 
