@@ -11,6 +11,7 @@ default: build
 .PHONY: build push login test test-all testall
 
 build:
+	cp -fv ../../common/sh_startup.jl .
 	$(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
 
 login:
@@ -20,7 +21,8 @@ push: build
 	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
 
 test: build
-	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none --user 1000:1000 -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests.sh"
+	cp -fv ../../common/su-test-user.sh .
+	# $(DOCKERCMD) run -v $(PWD):/dockerdir --network none --user 1000:1000 -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests.sh"
 
 test-all: build
 	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none --user 1000:1000 -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests-all.sh"
