@@ -11,23 +11,22 @@ RUN apt-get clean
 ENV JULIA_DEPOT_PATH=/opt/julia/share/julia
 
 RUN rm -rf /opt/julia/etc/julia/startup.jl
-COPY sh_startup.jl /opt/julia/etc/julia/startup.jl
+COPY sh_startup.jl /opt/julia/etc/julia/sh_startup.jl
 
 RUN rm -rf $JULIA_DEPOT_PATH/registries
 RUN julia -e 'import Pkg; Pkg.Registry.update(); '
 RUN julia -e 'import Pkg; Pkg.Registry.add(Pkg.Registry.RegistrySpec(url="https://github.com/JuliaRegistries/General")); '
 RUN julia -e 'import Pkg; Pkg.Registry.update(); '
-RUN julia -e 'import Pkg; try Pkg.update(); catch e @warn("ignoring exception: ", e,) end; '
 
-RUN julia -e 'import Pkg; Pkg.activate("PredictMD-unstable"); Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMD.jl", rev="develop"));'
-RUN julia -e 'import Pkg; Pkg.activate("PredictMD-unstable"); Pkg.build("PredictMD");'
-RUN julia -e 'import Pkg; Pkg.activate("PredictMD-unstable"); Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDExtra.jl", rev="develop")); '
-RUN julia -e 'import Pkg; Pkg.activate("PredictMD-unstable"); Pkg.build("PredictMDExtra");'
-RUN julia -e 'import Pkg; Pkg.activate("PredictMD-unstable"); Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDFull.jl", rev="develop")); '
-RUN julia -e 'import Pkg; Pkg.activate("PredictMD-unstable"); Pkg.build("PredictMDFull");'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.activate("PredictMD-unstable"); import PredictMD;'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.activate("PredictMD-unstable"); import PredictMDExtra;'
-RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.activate("PredictMD-unstable"); import PredictMDFull;'
+RUN julia -e 'import Pkg; Pkg.activate("PredictMD-dev"); Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMD.jl", rev="develop"));'
+RUN julia -e 'import Pkg; Pkg.activate("PredictMD-dev"); Pkg.build("PredictMD");'
+RUN julia -e 'import Pkg; Pkg.activate("PredictMD-dev"); Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDExtra.jl", rev="develop")); '
+RUN julia -e 'import Pkg; Pkg.activate("PredictMD-dev"); Pkg.build("PredictMDExtra");'
+RUN julia -e 'import Pkg; Pkg.activate("PredictMD-dev"); Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMDFull.jl", rev="develop")); '
+RUN julia -e 'import Pkg; Pkg.activate("PredictMD-dev"); Pkg.build("PredictMDFull");'
+RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.activate("PredictMD-dev"); import PredictMD;'
+RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.activate("PredictMD-dev"); import PredictMDExtra;'
+RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.activate("PredictMD-dev"); import PredictMDFull;'
 
 RUN cd /opt/julia/share/julia/registries && \
     mv General StrongHoldGeneral && \
