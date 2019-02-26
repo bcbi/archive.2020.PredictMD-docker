@@ -13,8 +13,6 @@ RUN mkdir -p $JULIA_DEPOT_PATH
 
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 
-RUN rm -rf $JULIA_DEPOT_PATH/compiled
-
 RUN rm -rf $JULIA_DEPOT_PATH/registries
 
 RUN julia -e 'import Pkg; Pkg.Registry.update();  '
@@ -49,8 +47,6 @@ RUN cd /opt/julia/share/julia/registries && \
     git remote remove origin
 
 RUN /bin/bash -c "chmod -R +r $JULIA_DEPOT_PATH"
-
-RUN rm -rf $JULIA_DEPOT_PATH/compiled
 
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 COPY sh_startup.jl /opt/julia/etc/julia/sh_startup.jl
