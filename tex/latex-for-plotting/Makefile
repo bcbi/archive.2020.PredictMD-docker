@@ -1,6 +1,6 @@
 DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
-DOCKER_IMAGE_NAME = latex_for_plotting
+DOCKER_IMAGE_NAME = latex-for-plotting
 
 .PHONY: default
 
@@ -20,7 +20,7 @@ push: build
 	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
 
 test: build
-	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/opt/predictmd/docker/bin/runtests.sh"
+	$(DOCKERCMD) run -v .:/dockerdir -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests.sh"
 
 test-all: build
 	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/opt/predictmd/docker/bin/runtests-all.sh"

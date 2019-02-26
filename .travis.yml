@@ -58,22 +58,22 @@ stages:
 jobs:
     include:
         - stage: "Stage 1 (tex)"
-          name: "dilumaluthge/latex_for_plotting"
+          name: "dilumaluthge/latex-for-plotting"
           env:
-              - IMAGE="latex_for_plotting"
+              - IMAGE="latex-for-plotting"
               - FOLDER="tex"
           script: ./ci/travis/script.sh
 
         - stage: "Stage 2 (predictmd)"
-          name: "dilumaluthge/predictmd_stable"
+          name: "dilumaluthge/predictmd-stable"
           env:
-              - IMAGE="predictmd_stable"
+              - IMAGE="predictmd-stable"
               - FOLDER="predictmd"
           script: true
         - stage: "Stage 2 (predictmd)"
-          name: "dilumaluthge/predictmd_unstable"
+          name: "dilumaluthge/predictmd-unstable"
           env:
-              - IMAGE="predictmd_unstable"
+              - IMAGE="predictmd-unstable"
               - FOLDER="predictmd"
           script: ./ci/travis/script.sh
 

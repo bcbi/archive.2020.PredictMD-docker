@@ -1,4 +1,4 @@
-FROM dilumaluthge/julia1.1:latest
+FROM dilumaluthge/latex-for-plotting:latest
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
@@ -35,18 +35,4 @@ RUN cd /opt/julia/share/julia/registries && \
 
 COPY julia_scripts/sh_startup.jl /opt/julia/etc/julia/startup.jl
 
-RUN rm -rf /tmp/runtests.sh
-COPY runtests.sh /tmp/
-RUN mkdir -p /opt/predictmd/docker/bin
-RUN touch /opt/predictmd/docker/bin/runtests.sh
-RUN cat /tmp/runtests.sh >> /opt/predictmd/docker/bin/runtests.sh
-RUN rm -rf /tmp/runtests.sh
-RUN chmod 555 /opt/predictmd/docker/bin/runtests.sh
-
-RUN rm -rf /tmp/runtests-all.sh
-COPY runtests-all.sh /tmp/
-RUN mkdir -p /opt/predictmd/docker/bin
-RUN touch /opt/predictmd/docker/bin/runtests-all.sh
-RUN cat /tmp/runtests-all.sh >> /opt/predictmd/docker/bin/runtests-all.sh
-RUN rm -rf /tmp/runtests-all.sh
-RUN chmod 555 /opt/predictmd/docker/bin/runtests-all.sh
+RUN rm -rf $JULIA_DEPOT_PATH/compiled
