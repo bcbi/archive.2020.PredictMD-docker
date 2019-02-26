@@ -11,15 +11,16 @@ default: build
 .PHONY: build push login test test-all testall
 
 build:
-	$(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
+	cd builddir; $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .;
 
 login:
 	$(DOCKERCMD) login
 
 push: build
-	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
+	cd builddir; $(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
 
 test: build
+	cd tes
 	$(DOCKERCMD) run -v $(PWD):/dockerdir --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests.sh"
 
 test-all: build
