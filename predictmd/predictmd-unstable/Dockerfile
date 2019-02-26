@@ -1,4 +1,4 @@
-FROM dilumaluthge/julia1.1:latest
+FROM dilumaluthge/latex-for-plotting:latest
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
@@ -10,7 +10,13 @@ RUN apt-get clean
 
 ENV JULIA_DEPOT_PATH=/opt/julia/share/julia
 
+RUN rm -rf /opt/julia/etc/julia/startup.jl
+
 RUN rm -rf $JULIA_DEPOT_PATH/compiled
+RUN rm -rf $JULIA_DEPOT_PATH/environments
+RUN rm -rf $JULIA_DEPOT_PATH/registries
+
+RUN julia -e 'import Pkg; try Pkg.update(); catch e @warn("ignoring exception: ", e,) end; '
 
 RUN julia -e 'import Pkg; try deleteat!(DEPOT_PATH,1:2) catch e @warn("ignoring exception: ", e,) end; Pkg.add(Pkg.PackageSpec(url="https://github.com/bcbi/PredictMD.jl", rev="develop"));'
 RUN julia -e 'import Pkg; Pkg.build("PredictMD");'
@@ -21,6 +27,7 @@ RUN julia -e 'import Pkg; Pkg.build("PredictMDFull");'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMD;'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDExtra;'
 RUN julia -e 'ENV["JULIA_DEBUG"] = "all"; import PredictMDFull;'
+
 RUN cd /opt/julia/share/julia/registries && \
     mv General StrongHoldGeneral && \
     cd StrongHoldGeneral && \
@@ -33,20 +40,7 @@ RUN cd /opt/julia/share/julia/registries && \
     git commit -m "updating registry details for stronghold" && \
     git remote remove origin
 
+RUN rm -rf /opt/julia/etc/julia/startup.jl
 COPY julia_scripts/sh_startup.jl /opt/julia/etc/julia/startup.jl
 
-RUN rm -rf /tmp/runtests.sh
-COPY runtests.sh /tmp/
-RUN mkdir -p /opt/predictmd/docker/bin
-RUN touch /opt/predictmd/docker/bin/runtests.sh
-RUN cat /tmp/runtests.sh >> /opt/predictmd/docker/bin/runtests.sh
-RUN rm -rf /tmp/runtests.sh
-RUN chmod 555 /opt/predictmd/docker/bin/runtests.sh
-
-RUN rm -rf /tmp/runtests-all.sh
-COPY runtests-all.sh /tmp/
-RUN mkdir -p /opt/predictmd/docker/bin
-RUN touch /opt/predictmd/docker/bin/runtests-all.sh
-RUN cat /tmp/runtests-all.sh >> /opt/predictmd/docker/bin/runtests-all.sh
-RUN rm -rf /tmp/runtests-all.sh
-RUN chmod 555 /opt/predictmd/docker/bin/runtests-all.sh
+RUN rm -rf $JULIA_DEPOT_PATH/compiled

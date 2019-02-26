@@ -30,16 +30,10 @@
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `predictmd_unstable` | [Dockerfile](/predictmd/predictmd_unstable/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd_unstable"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd_unstable.svg"></a> |
-
-### Julia
-
-| Name | Dockerfile | Image |
-| ---- | ---------- | ----- |
-| `julia1.1` | [Dockerfile](/julia/julia1.1/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/julia1.1"><img src="https://images.microbadger.com/badges/image/dilumaluthge/julia1.1.svg"></a> |
+| `predictmd-unstable` | [Dockerfile](/predictmd/predictmd-unstable/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd-unstable"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd-unstable.svg"></a> |
 
 ### TeX
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `latex_for_plotting` | [Dockerfile](/tex/latex_for_plotting/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex_for_plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex_for_plotting.svg"></a> |
+| `latex-for-plotting` | [Dockerfile](/tex/latex-for-plotting/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |

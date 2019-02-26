@@ -12,6 +12,6 @@ julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.test("PredictMD");'
 julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.test("PredictMDExtra");'
 julia -e 'ENV["JULIA_DEBUG"] = "all"; import Pkg; Pkg.test("PredictMDFull");'
 
-echo "Tests passed."
+echo "predictmd-stable: runtests-all.sh: Tests passed."
 
 ##### End of file

@@ -6,6 +6,6 @@ set -ev
 
 latex --version
 
-echo "Tests passed."
+echo "dilumaluthge/latex-for-plotting: runtests-all.sh: Tests passed."
 
 ##### End of file

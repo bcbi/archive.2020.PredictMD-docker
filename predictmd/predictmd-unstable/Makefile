@@ -1,6 +1,6 @@
 DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
-DOCKER_IMAGE_NAME = latex_for_plotting
+DOCKER_IMAGE_NAME = predictmd_unstable
 
 .PHONY: default
 
@@ -20,10 +20,10 @@ push: build
 	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
 
 test: build
-	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/opt/predictmd/docker/bin/runtests.sh"
+	$(DOCKERCMD) run -v $(PWD):/dockerdir -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests.sh"
 
 test-all: build
-	$(DOCKERCMD) run -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/opt/predictmd/docker/bin/runtests-all.sh"
+	$(DOCKERCMD) run -v $(PWD):/dockerdir -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests-all.sh"
 
 testall:
 	@echo "I think you meant: make test-all"
