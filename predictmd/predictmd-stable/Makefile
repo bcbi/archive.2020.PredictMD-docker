@@ -20,10 +20,12 @@ push: build
 	true
 
 test: build
-	true
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/bin/runtests.sh;"
 
 test-all: build
-	true
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/bin/runtests.sh; /bin/runtests-all.sh;"
 
 testall:
 	@echo "I think you meant: make test-all"
