@@ -2,28 +2,28 @@ DOCKERCMD = docker
 DOCKER_IMAGE_OWNER = dilumaluthge
 DOCKER_IMAGE_NAME = latex-for-plotting
 
-.PHONY: default
+##############################################################################
+
+.PHONY: default build push login test test-all testall
 
 default: build
 
-##############################################################################
-
-.PHONY: build push login test test-all testall
-
 build:
-	$(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
+	cd builddir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) .
 
 login:
 	$(DOCKERCMD) login
 
 push: build
-	$(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
+	cd builddir; $(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
 
 test: build
-	$(DOCKERCMD) run -v $(PWD):/dockerdir -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests.sh"
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/bin/runtests.sh;"
 
 test-all: build
-	$(DOCKERCMD) run -v $(PWD):/dockerdir -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME) /bin/bash -c "/dockerdir/runtests-all.sh"
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test .
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)-test /bin/bash -c "/bin/runtests.sh; /bin/runtests-all.sh;"
 
 testall:
 	@echo "I think you meant: make test-all"

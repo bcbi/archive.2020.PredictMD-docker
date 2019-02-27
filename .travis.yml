@@ -69,7 +69,7 @@ jobs:
           env:
               - IMAGE="predictmd-stable"
               - FOLDER="predictmd"
-          script: true
+          script: ./ci/travis/script.sh
         - stage: "Stage 2 (predictmd)"
           name: "dilumaluthge/predictmd-unstable"
           env:
