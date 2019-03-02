@@ -30,10 +30,10 @@
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `predictmd-unstable` | [Dockerfile](/predictmd/predictmd-unstable/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd-unstable"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd-unstable.svg"></a> |
+| `predictmd-unstable` | [Dockerfile](/predictmd/predictmd-unstable/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd-unstable"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd-unstable.svg"></a> |
 
 ### TeX
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `latex-for-plotting` | [Dockerfile](/tex/latex-for-plotting/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
+| `latex-for-plotting` | [Dockerfile](/tex/latex-for-plotting/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
