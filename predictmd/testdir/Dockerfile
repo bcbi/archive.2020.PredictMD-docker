@@ -1,4 +1,4 @@
-FROM dilumaluthge/predictmd-stable:latest
+FROM dilumaluthge/predictmd:latest
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
