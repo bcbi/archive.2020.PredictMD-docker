@@ -16,6 +16,7 @@ login:
 
 push: build
 	cd builddir; $(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/$(DOCKER_IMAGE_NAME)
+	cd testdir; $(DOCKERCMD) push $(DOCKER_IMAGE_OWNER)/test-$(DOCKER_IMAGE_NAME)
 
 test: build
 	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/test-$(DOCKER_IMAGE_NAME) .
