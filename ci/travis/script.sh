@@ -15,7 +15,7 @@ cd $IMAGE
 pwd
 
 make build
-make test
+make test-all
 
 if [[ "$TRAVIS_BRANCH" == "master" ]]
 then
