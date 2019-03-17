@@ -52,7 +52,7 @@ after_script:
 stages:
     - "Stage 1 (latex-for-plotting)"
     - "Stage 2 (offlineregistry)"
-    # - "Stage 3 (predictmd)"
+     - "Stage 3 (predictmd)"
 
 ############################################################################
 
@@ -68,10 +68,10 @@ jobs:
           env:
               - IMAGE="offlineregistry"
           script: ./ci/travis/script.sh
-        # - stage: "Stage 3 (predictmd)"
-        #   name: "dilumaluthge/predictmd"
-        #   env:
-        #       - IMAGE="predictmd"
-        #   script: ./ci/travis/script.sh
+         - stage: "Stage 3 (predictmd)"
+           name: "dilumaluthge/predictmd"
+           env:
+               - IMAGE="predictmd"
+           script: ./ci/travis/script.sh
 
 ############################################################################
