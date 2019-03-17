@@ -33,9 +33,7 @@ test-all:
 	$(MAKE) -C images/predictmd test-all
 
 test-bash:
-	$(MAKE) -C images/latex-for-plotting test-bash
-	$(MAKE) -C images/offlineregistry test-bash
-	$(MAKE) -C images/predictmd test-bash
+	@echo "cd into a specific image directory before running make test-bash"
 
 testall:
 	@echo "I think you meant: make test-all"
