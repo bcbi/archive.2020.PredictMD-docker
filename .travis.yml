@@ -50,31 +50,28 @@ after_script:
 ############################################################################
 
 stages:
-    - "Stage 1 (tex)"
-    - "Stage 2 (predictmd)"
+    - "Stage 1 (latex-for-plotting)"
+    - "Stage 2 (offlineregistry)"
+    # - "Stage 3 (predictmd)"
 
 ############################################################################
 
 jobs:
     include:
-        - stage: "Stage 1 (tex)"
+        - stage: "Stage 1 (latex-for-plotting)"
           name: "dilumaluthge/latex-for-plotting"
           env:
               - IMAGE="latex-for-plotting"
-              - FOLDER="tex"
           script: ./ci/travis/script.sh
-
-        - stage: "Stage 2 (predictmd)"
-          name: "dilumaluthge/predictmd-stable"
+        - stage: "Stage 2 (offlineregistry)"
+          name: "dilumaluthge/offlineregistry"
           env:
-              - IMAGE="predictmd-stable"
-              - FOLDER="predictmd"
+              - IMAGE="offlineregistry"
           script: ./ci/travis/script.sh
-        - stage: "Stage 2 (predictmd)"
-          name: "dilumaluthge/predictmd-unstable"
-          env:
-              - IMAGE="predictmd-unstable"
-              - FOLDER="predictmd"
-          script: ./ci/travis/script.sh
+        # - stage: "Stage 3 (predictmd)"
+        #   name: "dilumaluthge/predictmd"
+        #   env:
+        #       - IMAGE="predictmd"
+        #   script: ./ci/travis/script.sh
 
 ############################################################################
