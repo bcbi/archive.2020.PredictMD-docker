@@ -11,6 +11,8 @@ pwd
 make docker-purge-all
 
 pwd
+cd images
+pwd
 cd $IMAGE
 pwd
 
