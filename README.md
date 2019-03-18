@@ -24,16 +24,14 @@
 
 ## Recommended image
 
+| Name | Dockerfile | Image |
+| ---- | ---------- | ----- |
+| `dilumaluthge/predictmd` | [Dockerfile](/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+
 ## All available images
 
-### PredictMD
-
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `predictmd-unstable` | [Dockerfile](/predictmd/predictmd-unstable/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd-unstable"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd-unstable.svg"></a> |
-
-### TeX
-
-| Name | Dockerfile | Image |
-| ---- | ---------- | ----- |
-| `latex-for-plotting` | [Dockerfile](/tex/latex-for-plotting/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
+| `dilumaluthge/latex-for-plotting` | [Dockerfile](/images/latex-for-plotting/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
+| `dilumaluthge/offlineregistry` | [Dockerfile](/images/offlineregistry/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/offlineregistry"><img src="https://images.microbadger.com/badges/image/dilumaluthge/offlineregistry.svg"></a> |
+| `dilumaluthge/predictmd` | [Dockerfile](/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |

@@ -10,27 +10,30 @@ docker-purge-all:
 	echo "1" | ./utils/docker-purge-all.sh
 
 build:
-	$(MAKE) -C latex-for-plotting build
-	$(MAKE) -C offlineregistry build
-	$(MAKE) -C predictmd build
+	$(MAKE) -C images/latex-for-plotting build
+	$(MAKE) -C images/offlineregistry build
+	$(MAKE) -C images/predictmd build
 
 login:
 	$(DOCKERCMD) login
 
 push:
-	$(MAKE) -C latex-for-plotting push
-	$(MAKE) -C offlineregistry push
-	$(MAKE) -C predictmd push
+	$(MAKE) -C images/latex-for-plotting push
+	$(MAKE) -C images/offlineregistry push
+	$(MAKE) -C images/predictmd push
 
 test:
-	$(MAKE) -C latex-for-plotting test
-	$(MAKE) -C offlineregistry test
-	$(MAKE) -C predictmd test
+	$(MAKE) -C images/latex-for-plotting test
+	$(MAKE) -C images/offlineregistry test
+	$(MAKE) -C images/predictmd test
 
 test-all:
-	$(MAKE) -C latex-for-plotting test-all
-	$(MAKE) -C offlineregistry test-all
-	$(MAKE) -C predictmd test-all
+	$(MAKE) -C images/latex-for-plotting test-all
+	$(MAKE) -C images/offlineregistry test-all
+	$(MAKE) -C images/predictmd test-all
+
+test-bash:
+	@echo "cd into a specific image directory before running make test-bash"
 
 testall:
 	@echo "I think you meant: make test-all"
