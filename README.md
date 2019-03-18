@@ -26,12 +26,12 @@
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `predictmd` | [Dockerfile](/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+| `dilumaluthge/predictmd` | [Dockerfile](/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
 
 ## All available images
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `latex-for-plotting` | [Dockerfile](/latex-for-plotting/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
-| `offlineregistry` | [Dockerfile](/offlineregistry/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/offlineregistry"><img src="https://images.microbadger.com/badges/image/dilumaluthge/offlineregistry.svg"></a> |
-| `predictmd` | [Dockerfile](/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+| `dilumaluthge/latex-for-plotting` | [Dockerfile](/latex-for-plotting/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
+| `dilumaluthge/offlineregistry` | [Dockerfile](/offlineregistry/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/offlineregistry"><img src="https://images.microbadger.com/badges/image/dilumaluthge/offlineregistry.svg"></a> |
+| `dilumaluthge/predictmd` | [Dockerfile](/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
