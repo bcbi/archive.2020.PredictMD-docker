@@ -26,7 +26,14 @@ test-all: build
 	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/test-$(DOCKER_IMAGE_NAME) .
 	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/test-$(DOCKER_IMAGE_NAME) /bin/bash -c "/bin/runtests.sh && /bin/runtests-all.sh"
 
+test-bash: build
+	cd testdir && $(DOCKERCMD) build -t $(DOCKER_IMAGE_OWNER)/test-$(DOCKER_IMAGE_NAME) .
+	$(DOCKERCMD) run --user predictmdtestuser --network none -it $(DOCKER_IMAGE_OWNER)/test-$(DOCKER_IMAGE_NAME) /bin/bash
+
 testall:
 	@echo "I think you meant: make test-all"
+
+testbash:
+	@echo "I think you meant: make test-bash"
 
 ##############################################################################
