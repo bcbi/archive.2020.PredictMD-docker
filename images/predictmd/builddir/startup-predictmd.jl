@@ -7,7 +7,8 @@ if !isfile(
             homedir(),
             ".julia",
             "environments",
-            string("v",VERSION.major,".",VERSION.minor,"-PredictMD",),
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD-unstable",),
             "Project.toml",
             )
         ) ||
@@ -16,7 +17,8 @@ if !isfile(
                 homedir(),
                 ".julia",
                 "environments",
-                string("v",VERSION.major,".",VERSION.minor,"-PredictMD",),
+                string("v",VERSION.major,".",VERSION.minor,
+                    "-PredictMD-unstable",),
                 "Manifest.toml",
                 )
             )
@@ -25,7 +27,8 @@ if !isfile(
             homedir(),
             ".julia",
             "environments",
-            string("v",VERSION.major,".",VERSION.minor,"-PredictMD",),
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD-unstable",),
             )
         )
     Pkg.activate(
@@ -33,12 +36,17 @@ if !isfile(
             homedir(),
             ".julia",
             "environments",
-            string("v",VERSION.major,".",VERSION.minor,"-PredictMD",),
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD-unstable",),
             )
         )
-    Pkg.add("PredictMD")
-    Pkg.add("PredictMDExtra")
-    Pkg.add("PredictMDFull")
+    Pkg.add(
+        [
+            Pkg.PackageSpec(name="PredictMD", rev="develop",),
+            Pkg.PackageSpec(name="PredictMDExtra", rev="develop",),
+            Pkg.PackageSpec(name="PredictMDFull", rev="develop",),
+            ],
+        )
 end
 
 if !isfile(
@@ -79,9 +87,115 @@ if !isfile(
                 "-PredictMD-develop",),
             )
         )
-    Pkg.add(Pkg.PackageSpec(name="PredictMD", rev="develop",))
-    Pkg.add(Pkg.PackageSpec(name="PredictMDExtra", rev="develop",))
-    Pkg.add(Pkg.PackageSpec(name="PredictMDFull", rev="develop",))
+    Pkg.add(
+        [
+            Pkg.PackageSpec(name="PredictMD", rev="develop",),
+            Pkg.PackageSpec(name="PredictMDExtra", rev="develop",),
+            Pkg.PackageSpec(name="PredictMDFull", rev="develop",),
+            ],
+        )
+    Pkg.develop(
+        [
+            "PredictMD",
+            "PredictMDExtra",
+            "PredictMDFull",
+            ];
+        shared = false,
+        )
+end
+
+if !isfile(
+        joinpath(
+            homedir(),
+            ".julia",
+            "environments",
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD-stable",),
+            "Project.toml",
+            )
+        ) ||
+        !isfile(
+            joinpath(
+                homedir(),
+                ".julia",
+                "environments",
+                string("v",VERSION.major,".",VERSION.minor,
+                    "-PredictMD-stable",),
+                "Manifest.toml",
+                )
+            )
+    mkpath(
+        joinpath(
+            homedir(),
+            ".julia",
+            "environments",
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD-stable",),
+            )
+        )
+    Pkg.activate(
+        joinpath(
+            homedir(),
+            ".julia",
+            "environments",
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD-stable",),
+            )
+        )
+    Pkg.add(
+        [
+            "PredictMD",
+            "PredictMDExtra",
+            "PredictMDFull",
+            ],
+        )
+end
+
+if !isfile(
+        joinpath(
+            homedir(),
+            ".julia",
+            "environments",
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD",),
+            "Project.toml",
+            )
+        ) ||
+        !isfile(
+            joinpath(
+                homedir(),
+                ".julia",
+                "environments",
+                string("v",VERSION.major,".",VERSION.minor,
+                    "-PredictMD",),
+                "Manifest.toml",
+                )
+            )
+    mkpath(
+        joinpath(
+            homedir(),
+            ".julia",
+            "environments",
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD",),
+            )
+        )
+    Pkg.activate(
+        joinpath(
+            homedir(),
+            ".julia",
+            "environments",
+            string("v",VERSION.major,".",VERSION.minor,
+                "-PredictMD",),
+            )
+        )
+    Pkg.add(
+        [
+            "PredictMD",
+            "PredictMDExtra",
+            "PredictMDFull",
+            ],
+        )
 end
 
 Pkg.activate(
