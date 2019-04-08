@@ -20,6 +20,7 @@ make build
 make test-all
 
 if [[ "$TRAVIS_BRANCH" == "master" ]]
+then
     if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     then
         echo "$DOCKER_BOT_PASSWORD" | docker login -u "$DOCKER_BOT_USERNAME" --password-stdin
@@ -27,7 +28,6 @@ if [[ "$TRAVIS_BRANCH" == "master" ]]
     else
         :
     fi
-then
 else
     if [[ "$TRAVIS_BRANCH" == "staging" ]]
     then
