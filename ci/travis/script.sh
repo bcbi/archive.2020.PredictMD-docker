@@ -29,7 +29,18 @@ then
         :
     fi
 else
-    :
+    if [[ "$TRAVIS_BRANCH" == "staging" ]]
+    then
+        if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
+        then
+            echo "$DOCKER_BOT_PASSWORD" | docker login -u "$DOCKER_BOT_USERNAME" --password-stdin
+            make push
+        else
+            :
+        fi
+    else
+        :
+    fi
 fi
 
 pwd
