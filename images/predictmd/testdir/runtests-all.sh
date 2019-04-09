@@ -18,14 +18,7 @@ export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 
 julia -e '
     import Pkg;
-    Pkg.activate(
-        joinpath(
-            homedir(),
-            ".julia",
-            "environments",
-            string("v", VERSION.major, ".", VERSION.minor, "-PredictMD",),
-            )
-        );
+    Pkg.activate(predictmd);
     import PredictMD;
     import PredictMDExtra;
     import PredictMDFull;
@@ -33,14 +26,7 @@ julia -e '
 
 julia -e '
     import Pkg;
-    Pkg.activate(
-        joinpath(
-            homedir(),
-            ".julia",
-            "environments",
-            string("v", VERSION.major, ".", VERSION.minor, "-PredictMD",),
-            )
-        );
+    Pkg.activate(predictmd);
     Pkg.test("PredictMD");
     Pkg.test("PredictMDExtra");
     Pkg.test("PredictMDFull");
