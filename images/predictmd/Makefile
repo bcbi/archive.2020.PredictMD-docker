@@ -36,8 +36,10 @@ test-bash: build
 
 testall:
 	@echo "I think you meant: make test-all"
+	@exit 2
 
 testbash:
 	@echo "I think you meant: make test-bash"
+	@exit 2
 
 ##############################################################################

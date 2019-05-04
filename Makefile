@@ -34,11 +34,14 @@ test-all:
 
 test-bash:
 	@echo "cd into a specific image directory before running make test-bash"
+	@exit 2
 
 testall:
 	@echo "I think you meant: make test-all"
+	@exit 2
 
 testbash:
 	@echo "I think you meant: make test-bash"
+	@exit 2
 
 ##############################################################################
