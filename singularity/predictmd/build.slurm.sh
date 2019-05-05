@@ -10,4 +10,6 @@ make clean
 make build
 make test-all
 
-echo "build.slurm.sh completed successfully"
+set +v
+
+echo "build.slurm.sh: completed successfully"
