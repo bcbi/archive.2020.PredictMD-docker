@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+set +v
+
+singularity_cmd="singularity"
+this_script_directory=$(dirname $(readlink -f $0))
+predictmd_image="$this_script_directory/predictmd.simg"
+
+$singularity_cmd exec -B "/users" "$predictmd_image" julia "$@"
