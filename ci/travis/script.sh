@@ -30,6 +30,8 @@ pwd
 make docker-purge-all
 
 pwd
+cd docker
+pwd
 cd images
 pwd
 cd $IMAGE
