@@ -12,4 +12,4 @@ echo "predictmd_image=\"$predictmd_image\""
 
 set -v
 
-$singularity_cmd shell -B "/users" "$predictmd_image"
+$singularity_cmd shell -B "/gpfs" -B "/gpfs_home" "$predictmd_image"
