@@ -1,4 +1,4 @@
-# PredictMD-docker: Dockerfiles for PredictMD
+# PredictMD-docker: Docker and Singularity images for PredictMD
 ### Main repository: [bcbi/PredictMD.jl](https://github.com/bcbi/PredictMD.jl)
 ### Website: [https://predictmd.net](https://predictmd.net)
 

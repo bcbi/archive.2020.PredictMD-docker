@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+set +v
+
+singularity_cmd="singularity"
+this_script_directory=$(dirname $(readlink -f $0))
+predictmd_image="$this_script_directory/predictmd.simg"
+
+echo "singularity_cmd=\"$singularity_cmd\""
+echo "predictmd_image=\"$predictmd_image\""
+
+set -v
+
+$singularity_cmd shell -B "/gpfs" -B "/gpfs_home" "$predictmd_image"
