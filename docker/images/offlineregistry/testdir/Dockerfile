@@ -1,4 +1,4 @@
-FROM dilumaluthge/offlineregistry:latest
+FROM dilumaluthge/offlineregistry
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
