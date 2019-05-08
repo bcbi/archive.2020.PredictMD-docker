@@ -1,4 +1,4 @@
-FROM dilumaluthge/latex-for-plotting:latest
+FROM dilumaluthge/latex-for-plotting
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
