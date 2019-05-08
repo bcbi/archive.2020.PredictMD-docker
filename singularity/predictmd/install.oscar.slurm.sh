@@ -9,7 +9,8 @@ set -ev
 make clean
 make build
 make test-all
+make PREFIX=~/local install
 
 set +v
 
-echo "build.slurm.sh: completed successfully"
+echo "install.oscar.slurm.sh: completed successfully"
