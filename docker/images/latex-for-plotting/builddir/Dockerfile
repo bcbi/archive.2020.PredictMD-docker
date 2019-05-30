@@ -23,6 +23,7 @@ RUN apt-get install -yq --no-install-recommends \
     git-lfs \
     gpg \
     gpg-agent \
+    gzip \
     libcurl4-openssl-dev \
     libpgf-dev \
     libpgf6 \
@@ -46,6 +47,7 @@ RUN apt-get install -yq --no-install-recommends \
     tree \
     vim \
     wget \
+    zip \
     zlib1g-dev
 RUN apt-get update
 RUN apt-get -yq dist-upgrade
