@@ -18,6 +18,9 @@ RUN apt-get install -yq --no-install-recommends \
     gettext \
     gfortran \
     git \
+    git-all \
+    git-flow \
+    git-lfs \
     gpg \
     gpg-agent \
     libcurl4-openssl-dev \
@@ -40,6 +43,7 @@ RUN apt-get install -yq --no-install-recommends \
     texlive-luatex \
     texlive-pictures \
     tmux  \
+    tree \
     vim \
     wget \
     zlib1g-dev
