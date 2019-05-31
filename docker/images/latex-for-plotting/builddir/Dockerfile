@@ -18,8 +18,12 @@ RUN apt-get install -yq --no-install-recommends \
     gettext \
     gfortran \
     git \
+    git-all \
+    git-flow \
+    git-lfs \
     gpg \
     gpg-agent \
+    gzip \
     libcurl4-openssl-dev \
     libpgf-dev \
     libpgf6 \
@@ -40,8 +44,10 @@ RUN apt-get install -yq --no-install-recommends \
     texlive-luatex \
     texlive-pictures \
     tmux  \
+    tree \
     vim \
     wget \
+    zip \
     zlib1g-dev
 RUN apt-get update
 RUN apt-get -yq dist-upgrade
