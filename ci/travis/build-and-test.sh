@@ -27,8 +27,6 @@ pwd
 cd $TRAVIS_BUILD_DIR
 pwd
 
-make docker-purge-all
-
 pwd
 cd docker
 pwd
@@ -68,7 +66,5 @@ fi
 pwd
 cd $TRAVIS_BUILD_DIR
 pwd
-
-make docker-purge-all
 
 ##### End of file

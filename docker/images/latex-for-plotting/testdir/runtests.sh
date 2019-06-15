@@ -13,6 +13,6 @@ id -rg
 
 latex --version
 
-echo "dilumaluthge/latex-for-plotting: runtests-all.sh: Tests passed."
+echo "dilumaluthge/latex-for-plotting: runtests.sh: Tests passed."
 
 ##### End of file

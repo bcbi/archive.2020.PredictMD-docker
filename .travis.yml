@@ -49,25 +49,25 @@ after_script:
 ############################################################################
 
 stages:
-    - "Stage 1 (latex-for-plotting)"
-    - "Stage 2 (offlineregistry)"
-    - "Stage 3 (predictmd)"
+    - "Stage 1 (latex-for-plotting build-and-test)"
+    - "Stage 2 (offlineregistry build-and-test)"
+    - "Stage 3 (predictmd build-and-test)"
 
 ############################################################################
 
 jobs:
     include:
-        - stage: "Stage 1 (latex-for-plotting)"
+        - stage: "Stage 1 (latex-for-plotting build-and-test)"
           name: "dilumaluthge/latex-for-plotting"
           env:
               - IMAGE="latex-for-plotting"
           script: ./ci/travis/build-and-test.sh
-        - stage: "Stage 2 (offlineregistry)"
+        - stage: "Stage 2 (offlineregistry build-and-test)"
           name: "dilumaluthge/offlineregistry"
           env:
               - IMAGE="offlineregistry"
           script: ./ci/travis/build-and-test.sh
-        - stage: "Stage 3 (predictmd)"
+        - stage: "Stage 3 (predictmd build-and-test)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"

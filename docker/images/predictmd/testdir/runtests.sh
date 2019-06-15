@@ -11,18 +11,17 @@ id -ru
 id -g
 id -rg
 
-export GROUP="all"
+export GROUP="$1"
 export JULIA_DEBUG="all"
-export PREDICTMD_TEST_GROUP="all"
+export PREDICTMD_TEST_GROUP="$1"
 export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 
-julia -e '
-    import Pkg;
-    Pkg.activate(predictmd);
-    import PredictMD;
-    import PredictMDExtra;
-    import PredictMDFull;
-    '
+echo "GROUP=$GROUP"
+echo "JULIA_DEBUG=$JULIA_DEBUG"
+echo "PREDICTMD_TEST_GROUP=$PREDICTMD_TEST_GROUP"
+echo "PREDICTMD_OPEN_PLOTS_DURING_TESTS=$PREDICTMD_OPEN_PLOTS_DURING_TESTS"
+
+exit 1
 
 julia -e '
     import Pkg;
@@ -32,6 +31,6 @@ julia -e '
     Pkg.test("PredictMDFull");
     '
 
-echo "predictmd: runtests-all.sh: Tests passed."
+echo "predictmd: runtests.sh: Tests passed."
 
 ##### End of file

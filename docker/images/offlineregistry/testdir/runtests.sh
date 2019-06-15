@@ -11,6 +11,6 @@ id -ru
 id -g
 id -rg
 
-echo "offlineregistry: runtests-all.sh: Tests passed."
+echo "offlineregistry: runtests.sh: Tests passed."
 
 ##### End of file
