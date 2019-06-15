@@ -61,16 +61,16 @@ jobs:
           name: "dilumaluthge/latex-for-plotting"
           env:
               - IMAGE="latex-for-plotting"
-          script: ./ci/travis/build-and-test-all.sh
+          script: ./ci/travis/build-and-test.sh
         - stage: "Stage 2 (offlineregistry)"
           name: "dilumaluthge/offlineregistry"
           env:
               - IMAGE="offlineregistry"
-          script: ./ci/travis/build-and-test-all.sh
+          script: ./ci/travis/build-and-test.sh
         - stage: "Stage 3 (predictmd)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
-          script: ./ci/travis/build-and-test-all.sh
+          script: ./ci/travis/build-and-test.sh "all"
 
 ############################################################################
