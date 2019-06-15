@@ -81,9 +81,9 @@ if !isfile(joinpath(predictmd_unstable, "Project.toml",)) ||
     Pkg.activate(predictmd_unstable);
     Pkg.add(
         [
-            Pkg.PackageSpec(name="PredictMD", rev="develop",),
-            Pkg.PackageSpec(name="PredictMDExtra", rev="develop",),
-            Pkg.PackageSpec(name="PredictMDFull", rev="develop",),
+            Pkg.PackageSpec(name="PredictMD", rev="master",),
+            Pkg.PackageSpec(name="PredictMDExtra", rev="master",),
+            Pkg.PackageSpec(name="PredictMDFull", rev="master",),
             ],
         );
 end
@@ -94,9 +94,9 @@ if !isfile(joinpath(predictmd_develop, "Project.toml",)) ||
     Pkg.activate(predictmd_develop);
     Pkg.add(
         [
-            Pkg.PackageSpec(name="PredictMD", rev="develop",),
-            Pkg.PackageSpec(name="PredictMDExtra", rev="develop",),
-            Pkg.PackageSpec(name="PredictMDFull", rev="develop",),
+            Pkg.PackageSpec(name="PredictMD", rev="master",),
+            Pkg.PackageSpec(name="PredictMDExtra", rev="master",),
+            Pkg.PackageSpec(name="PredictMDFull", rev="master",),
             ],
         );
     Pkg.develop(
