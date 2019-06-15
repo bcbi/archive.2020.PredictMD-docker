@@ -2,25 +2,63 @@ include("/opt/bcbi/predictmd/OfflineRegistry/startup.jl");
 
 import Pkg;
 
+offline_registry_directory = "/opt/bcbi/predictmd/OfflineRegistry/"
+offline_registry_name = Pkg.TOML.parsefile(
+    joinpath(splitpath(offline_registry_directory)..., "Registry.toml")
+    )["name"];
+offline_registry_uuid = Pkg.TOML.parsefile(
+    joinpath(splitpath(offline_registry_directory)..., "Registry.toml")
+    )["uuid"];
+pushfirst!(Base.DEPOT_PATH,joinpath(splitpath(@__DIR__)..., "depot",),);
+pushfirst!(
+    Base.DEPOT_PATH,
+    joinpath(
+        homedir(),
+        ".julia.isolated",
+        offline_registry_name,
+        offline_registry_uuid,
+        ),
+    );
+unique!(Base.DEPOT_PATH);
+
 predictmd = joinpath(
-    homedir(), ".julia", "environments",
+    homedir(),
+    ".julia.isolated",
+    offline_registry_name,
+    offline_registry_uuid,
+    "environments",
     "v$(VERSION.major).$(VERSION.minor)-PredictMD",
     );
 predictmd_stable = joinpath(
-    homedir(), ".julia", "environments",
+    homedir(),
+    ".julia.isolated",
+    offline_registry_name,
+    offline_registry_uuid,
+    "environments",
     "v$(VERSION.major).$(VERSION.minor)-PredictMD-stable",
     );
 predictmd_unstable = joinpath(
-    homedir(), ".julia", "environments",
+    homedir(),
+    ".julia.isolated",
+    offline_registry_name,
+    offline_registry_uuid,
+    "environments",
     "v$(VERSION.major).$(VERSION.minor)-PredictMD-unstable",
     );
 predictmd_develop = joinpath(
-    homedir(), ".julia", "environments",
+    homedir(),
+    ".julia.isolated",
+    offline_registry_name,
+    offline_registry_uuid,
+    "environments",
     "v$(VERSION.major).$(VERSION.minor)-PredictMD-develop",
     );
 
 predictmd_environments = String[
-    predictmd, predictmd_stable, predictmd_unstable, predictmd_develop,
+    predictmd,
+    predictmd_stable,
+    predictmd_unstable,
+    predictmd_develop,
     ];
 
 if !isfile(joinpath(predictmd, "Project.toml",)) ||
