@@ -11,18 +11,13 @@ id -ru
 id -g
 id -rg
 
-export GROUP="import-only"
 export JULIA_DEBUG="all"
-export PREDICTMD_TEST_GROUP="import-only"
-export PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
+export PREDICTMD_TEST_GROUP="$1"
+export PREDICTMD_OPEN_PLOTS_DURING_TESTS="$2"
 
-julia -e '
-    import Pkg;
-    Pkg.activate(predictmd);
-    import PredictMD;
-    import PredictMDExtra;
-    import PredictMDFull;
-    '
+echo "JULIA_DEBUG=$JULIA_DEBUG"
+echo "PREDICTMD_TEST_GROUP=$PREDICTMD_TEST_GROUP"
+echo "PREDICTMD_OPEN_PLOTS_DURING_TESTS=$PREDICTMD_OPEN_PLOTS_DURING_TESTS"
 
 julia -e '
     import Pkg;

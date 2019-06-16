@@ -8,7 +8,7 @@ set -ev
 
 make clean
 make build
-make test-all
+make test
 make PREFIX=~/local install
 
 set +v
