@@ -19,8 +19,6 @@ echo "JULIA_DEBUG=$JULIA_DEBUG"
 echo "PREDICTMD_TEST_GROUP=$PREDICTMD_TEST_GROUP"
 echo "PREDICTMD_OPEN_PLOTS_DURING_TESTS=$PREDICTMD_OPEN_PLOTS_DURING_TESTS"
 
-exit 1
-
 julia -e '
     import Pkg;
     Pkg.activate(predictmd);
