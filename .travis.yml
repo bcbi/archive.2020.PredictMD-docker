@@ -71,6 +71,7 @@ jobs:
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
-          script: ./ci/travis/build-and-test.sh "all"
+              - PREDICTMD_TEST_GROUP="all"
+          script: ./ci/travis/build-and-test.sh
 
 ############################################################################
