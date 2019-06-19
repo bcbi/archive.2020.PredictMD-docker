@@ -1,7 +1,5 @@
 #!/bin/bash
 
-##### Beginning of file
-
 set -ev
 
 if [[ "$TRAVIS_BRANCH" == "master" ]]
@@ -66,5 +64,3 @@ fi
 pwd
 cd $TRAVIS_BUILD_DIR
 pwd
-
-##### End of file

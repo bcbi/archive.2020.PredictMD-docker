@@ -49,29 +49,35 @@ after_script:
 ############################################################################
 
 stages:
-    - "Stage 1 (latex-for-plotting build-and-test)"
-    - "Stage 2 (offlineregistry build-and-test)"
-    - "Stage 3 (predictmd build-and-test)"
+    - "Stage 1 (latex-for-plotting: build and test)"
+    - "Stage 2 (offlineregistry: build and test)"
+    - "Stage 3 (predictmd: build)"
+    - "Stage 4 (predictmd: test `all`)"
 
 ############################################################################
 
 jobs:
     include:
-        - stage: "Stage 1 (latex-for-plotting build-and-test)"
+        - stage: "Stage 1 (latex-for-plotting: build and test)"
           name: "dilumaluthge/latex-for-plotting"
           env:
               - IMAGE="latex-for-plotting"
           script: ./ci/travis/build-and-test.sh
-        - stage: "Stage 2 (offlineregistry build-and-test)"
+        - stage: "Stage 2 (offlineregistry: build and test)"
           name: "dilumaluthge/offlineregistry"
           env:
               - IMAGE="offlineregistry"
           script: ./ci/travis/build-and-test.sh
-        - stage: "Stage 3 (predictmd build-and-test)"
+        - stage: "Stage 3 (predictmd: build)"
+          name: "dilumaluthge/predictmd"
+          env:
+              - IMAGE="predictmd"
+          script: ./ci/travis/build.sh
+        - stage: "Stage 4 (predictmd: test `all`)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
               - PREDICTMD_TEST_GROUP="all"
-          script: ./ci/travis/build-and-test.sh
+          script: ./ci/travis/test.sh
 
 ############################################################################
