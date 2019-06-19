@@ -34,7 +34,7 @@ cd $IMAGE
 pwd
 
 make build
-make test
+make __travis-build-test-image__
 
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
 then
