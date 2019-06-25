@@ -26,12 +26,4 @@ Singularity images for [PredictMD](https://predictmd.net).
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `dilumaluthge/predictmd` | [Dockerfile](/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
-
-## All available images
-
-| Name | Dockerfile | Image |
-| ---- | ---------- | ----- |
-| `dilumaluthge/latex-for-plotting` | [Dockerfile](/images/latex-for-plotting/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/latex-for-plotting"><img src="https://images.microbadger.com/badges/image/dilumaluthge/latex-for-plotting.svg"></a> |
-| `dilumaluthge/offlineregistry` | [Dockerfile](/images/offlineregistry/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/offlineregistry"><img src="https://images.microbadger.com/badges/image/dilumaluthge/offlineregistry.svg"></a> |
-| `dilumaluthge/predictmd` | [Dockerfile](/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+| `dilumaluthge/predictmd` | [Dockerfile](/docker/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
