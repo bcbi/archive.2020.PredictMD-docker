@@ -26,4 +26,4 @@ Singularity images for [PredictMD](https://predictmd.net).
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `dilumaluthge/predictmd` | [Dockerfile](/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+| `dilumaluthge/predictmd` | [Dockerfile](/docker/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
