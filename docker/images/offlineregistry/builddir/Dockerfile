@@ -15,7 +15,26 @@ RUN mkdir -p /opt/bcbi/predictmd
 RUN cd /opt/bcbi/predictmd && \
     git clone https://github.com/DilumAluthge/OfflineRegistry
 RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    rm -rf offline.toml
+COPY offline.toml /opt/bcbi/predictmd/OfflineRegistry/offline.toml
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.name "BCBI Machine Account"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.email "bcbi-git@brown.edu"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git add -A
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git commit --author="BCBI Machine Account <bcbi-git@brown.edu>" -m "Automated commit" || true
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
     julia make.jl "BCBIOfflineRegistry" "226ccab6-caf5-412c-80c4-6c7e3979fa0f" "BCBI Machine Account" "bcbi-git@brown.edu"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.name "BCBI Machine Account"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.email "bcbi-git@brown.edu"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git add -A
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git commit --author="BCBI Machine Account <bcbi-git@brown.edu>" -m "Automated commit" || true
 
 RUN find /opt/bcbi -type d -print0 | xargs -0 chmod 755
 RUN find /opt/bcbi -type f -print0 | xargs -0 chmod 644
