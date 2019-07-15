@@ -1,5 +1,8 @@
-# Based on https://github.com/brown-ccv/docker-stacks/blob/30dfa8808f072c6af3d56bb45d1fb428fa9c39b1/stronghold/julia/Dockerfile
 FROM ubuntu:18.10
+
+MAINTAINER Dilum Aluthge <dilum@aluthge.com>
+
+# Based on https://github.com/brown-ccv/docker-stacks/blob/30dfa8808f072c6af3d56bb45d1fb428fa9c39b1/stronghold/julia/Dockerfile
 
 # Basic OS dependencies
 ENV DEBIAN_FRONTEND noninteractive
@@ -34,8 +37,8 @@ RUN unzip -q electron-v4.0.4-linux-x64.zip -d atom
 
 # not sure why this is needed but otherwise after installing miniconda we get
 #/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
-    locale-gen
+# RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+#     locale-gen
 
 # Configure basic environment
 ENV SHELL=/bin/bash \
@@ -99,7 +102,6 @@ RUN cd /tmp && \
     ln -Ffs /opt/julia1.0.4/bin/julia /usr/local/bin/julia1.0.4 && \
     ln -Ffs /opt/julia1.0.4/bin/julia /usr/local/bin/julia1.0 && \
 
-
 # ****************************** Julia v1.1.1 *******************************
 
 RUN cd /tmp && \
@@ -139,5 +141,5 @@ RUN rm -rf /opt/julia1.1.1/share/julia/compiled/* && \
 # expose notebook and mysql port
 EXPOSE 8888 3306
 
-# COPY entrypoint_scripts/julia_base.sh /opt/scripts/
-# ENTRYPOINT ["/opt/scripts/julia_base.sh"]
+COPY entrypoint_scripts_julia_base.sh /opt/scripts/
+ENTRYPOINT ["/opt/scripts/julia_base.sh"]
