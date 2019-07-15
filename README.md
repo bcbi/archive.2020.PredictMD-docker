@@ -13,9 +13,9 @@ href="https://bors.tech">
 <img
 src="https://bors.tech/images/badge_small.svg"/>
 </a> <a
-href="https://travis-ci.com/DilumAluthge/PredictMD-docker/branches">
+href="https://travis-ci.com/aluthge/PredictMD-docker/branches">
 <img
-src="https://travis-ci.com/DilumAluthge/PredictMD-docker.svg?branch=master"/>
+src="https://travis-ci.com/aluthge/PredictMD-docker.svg?branch=master"/>
 </a>
 </p>
 
