@@ -107,5 +107,4 @@ jobs:
               - PREDICTMD_TEST_GROUP="docker-4"
           script: ./ci/travis/test.sh
 
-
 ############################################################################
