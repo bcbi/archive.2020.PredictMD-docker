@@ -49,52 +49,58 @@ after_script:
 ############################################################################
 
 stages:
-    - "Stage 1 (latex-for-plotting: build and test)"
-    - "Stage 2 (offlineregistry: build and test)"
-    - "Stage 3 (predictmd: build)"
-    - "Stage 4 (predictmd: test `docker-1`)"
-    - "Stage 5 (predictmd: test `docker-2`)"
-    - "Stage 6 (predictmd: test `docker-3`)"
-    - "Stage 7 (predictmd: test `docker-4`)"
+    - "Stage 1 (julia-1: build and test)"
+    - "Stage 2 (latex-for-plotting: build and test)"
+    - "Stage 3 (offlineregistry: build and test)"
+    - "Stage 4 (predictmd: build)"
+    - "Stage 5 (predictmd: test `docker-1`)"
+    - "Stage 6 (predictmd: test `docker-2`)"
+    - "Stage 7 (predictmd: test `docker-3`)"
+    - "Stage 8 (predictmd: test `docker-4`)"
 
 ############################################################################
 
 jobs:
     include:
-        - stage: "Stage 1 (latex-for-plotting: build and test)"
+        - stage: "Stage 1 (julia-1: build and test)"
+          name: "dilumaluthge/julia-1"
+          env:
+              - IMAGE="julia-1"
+          script: ./ci/travis/build-and-test.sh
+        - stage: "Stage 2 (latex-for-plotting: build and test)"
           name: "dilumaluthge/latex-for-plotting"
           env:
               - IMAGE="latex-for-plotting"
           script: ./ci/travis/build-and-test.sh
-        - stage: "Stage 2 (offlineregistry: build and test)"
+        - stage: "Stage 3 (offlineregistry: build and test)"
           name: "dilumaluthge/offlineregistry"
           env:
               - IMAGE="offlineregistry"
           script: ./ci/travis/build-and-test.sh
-        - stage: "Stage 3 (predictmd: build)"
+        - stage: "Stage 4 (predictmd: build)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
           script: ./ci/travis/build.sh
-        - stage: "Stage 4 (predictmd: test `docker-1`)"
+        - stage: "Stage 5 (predictmd: test `docker-1`)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
               - PREDICTMD_TEST_GROUP="docker-1"
           script: ./ci/travis/test.sh
-        - stage: "Stage 5 (predictmd: test `docker-2`)"
+        - stage: "Stage 6 (predictmd: test `docker-2`)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
               - PREDICTMD_TEST_GROUP="docker-2"
           script: ./ci/travis/test.sh
-        - stage: "Stage 6 (predictmd: test `docker-3`)"
+        - stage: "Stage 7 (predictmd: test `docker-3`)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
               - PREDICTMD_TEST_GROUP="docker-3"
           script: ./ci/travis/test.sh
-        - stage: "Stage 7 (predictmd: test `docker-4`)"
+        - stage: "Stage 8 (predictmd: test `docker-4`)"
           name: "dilumaluthge/predictmd"
           env:
               - IMAGE="predictmd"
