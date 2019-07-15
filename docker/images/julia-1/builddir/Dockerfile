@@ -100,7 +100,7 @@ RUN cd /tmp && \
     ln -Ffs /opt/julia1.0.4/bin/julia /opt/julia1.0.4/bin/julia1.0.4 && \
     ln -Ffs /opt/julia1.0.4/bin/julia /opt/julia1.0.4/bin/julia1.0 && \
     ln -Ffs /opt/julia1.0.4/bin/julia /usr/local/bin/julia1.0.4 && \
-    ln -Ffs /opt/julia1.0.4/bin/julia /usr/local/bin/julia1.0 && \
+    ln -Ffs /opt/julia1.0.4/bin/julia /usr/local/bin/julia1.0
 
 # ****************************** Julia v1.1.1 *******************************
 
