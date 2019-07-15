@@ -118,7 +118,6 @@ RUN cd /tmp && \
     ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia1.1.1 && \
     ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia1.1 && \
     ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia1 && \
-    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia && \
     ln -Ffs /opt/julia1.1.1/bin/julia /usr/local/bin/julia1.1.1 && \
     ln -Ffs /opt/julia1.1.1/bin/julia /usr/local/bin/julia1.1 && \
     ln -Ffs /opt/julia1.1.1/bin/julia /usr/local/bin/julia1 && \
