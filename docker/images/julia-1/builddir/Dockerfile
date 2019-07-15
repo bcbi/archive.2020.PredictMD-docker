@@ -37,8 +37,8 @@ RUN unzip -q electron-v4.0.4-linux-x64.zip -d atom
 
 # not sure why this is needed but otherwise after installing miniconda we get
 #/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-# RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
-#     locale-gen
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen
 
 # Configure basic environment
 ENV SHELL=/bin/bash \
@@ -115,10 +115,10 @@ RUN cd /tmp && \
     cd /tmp && \
     rm -rf /tmp/predictmd-julia && \
     /opt/julia1.1.1/bin/julia -e 'import InteractiveUtils; InteractiveUtils.versioninfo(verbose=true)' && \
-    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.0.4/bin/julia1.1.1 && \
-    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.0.4/bin/julia1.1 && \
-    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.0.4/bin/julia1 && \
-    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.0.4/bin/julia && \
+    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia1.1.1 && \
+    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia1.1 && \
+    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia1 && \
+    ln -Ffs /opt/julia1.1.1/bin/julia /opt/julia1.1.1/bin/julia && \
     ln -Ffs /opt/julia1.1.1/bin/julia /usr/local/bin/julia1.1.1 && \
     ln -Ffs /opt/julia1.1.1/bin/julia /usr/local/bin/julia1.1 && \
     ln -Ffs /opt/julia1.1.1/bin/julia /usr/local/bin/julia1 && \
