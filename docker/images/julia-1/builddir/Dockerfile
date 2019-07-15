@@ -127,9 +127,9 @@ RUN mkdir -p /opt/scripts
 
 # Julia MySQL v0.7 ships with an outdated myslq client that prevents us to Connect to servers running on Brown network
 # MySQL > v8.04 see - https://github.com/JuliaDatabases/MySQL.jl/issues/118
-RUN rm /opt/julia/share/julia/packages/MySQL/owtkt/deps/usr/lib/libmariadb.so
-RUN ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so /opt/julia/share/julia/packages/MySQL/owtkt/deps/usr/lib/libmariadb.so
-ENV LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN y
+# RUN rm -rf /opt/julia/share/julia/packages/MySQL/owtkt/deps/usr/lib/libmariadb.so
+# RUN ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so /opt/julia/share/julia/packages/MySQL/owtkt/deps/usr/lib/libmariadb.so
+# ENV LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN y
 
 RUN rm -rf /opt/julia1.0.4/share/julia/compiled/* && \
     mkdir -p /opt/julia1.0.4/share/julia/compiled
