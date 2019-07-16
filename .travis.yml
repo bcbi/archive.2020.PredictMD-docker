@@ -10,8 +10,6 @@ branches:
 
 env:
     global:
-        - DOCKER_IMAGE_OWNER="dilumaluthge"
-        - DOCUMENTER_DEBUG="true"
         - JULIA_DEBUG="all"
         - PREDICTMD_OPEN_PLOTS_DURING_TESTS="true"
 

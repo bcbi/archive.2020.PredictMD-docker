@@ -73,9 +73,10 @@ function test(; image_name::String,
     original_directory::String = pwd()
     cd(image_directory)
     cd("testdir")
-    if
+    if ispath("echo-env.sh")
+        my_run(`echo-env.sh`)
     end
-    my_run(`$(docker_command) run --user predictmdtestuser --network none -it $(image_owner)/$(image_name_prefix)test-$(image_name) /bin/bash -c "/bin/runtests.sh"`)
+    # my_run(`$(docker_command) run --user predictmdtestuser --network none -it $(image_owner)/$(image_name_prefix)test-$(image_name) /bin/bash -c "/bin/runtests.sh"`)
     cd(original_directory)
     return nothing
 end
