@@ -29,10 +29,8 @@ pwd
 cd docker
 pwd
 
-
 julia make.jl build $IMAGE $IMAGE_NAME_PREFIX"
 julia make.jl test $IMAGE $IMAGE_NAME_PREFIX"
-
 
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
 then

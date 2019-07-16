@@ -1,8 +1,5 @@
 import Pkg
 
-struct ImageSpec
-end
-
 function my_run(cmd)
     @info("Attempting to run command: $(cmd)")
     run(cmd)
@@ -32,6 +29,7 @@ function generate_dockerfiles(; directory::String,
         build_in = read(build_in_filename, String)
         build_out = apply_template(build_in, templates)
         rm(build_out_filename; force = true, recursive = true)
+        mkpath(dirname(build_out_filename))
         open(build_out_filename, "w") do f
             write(f, build_out)
         end
@@ -42,6 +40,7 @@ function generate_dockerfiles(; directory::String,
         test_in = read(test_in_filename, String)
         test_out = apply_template(test_in, templates)
         rm(test_out_filename; force = true, recursive = true)
+        mkpath(dirname(test_out_filename))
         open(test_out_filename, "w") do f
             write(f, test_out)
         end
@@ -74,6 +73,8 @@ function test(; image_name::String,
     original_directory::String = pwd()
     cd(image_directory)
     cd("testdir")
+    if
+    end
     my_run(`$(docker_command) run --user predictmdtestuser --network none -it $(image_owner)/$(image_name_prefix)test-$(image_name) /bin/bash -c "/bin/runtests.sh"`)
     cd(original_directory)
     return nothing
