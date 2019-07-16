@@ -80,7 +80,7 @@ end
 function push(; image_name::String,
                 image_name_prefix::String,
                 image_owner::String,
-                image_directory::String
+                image_directory::String,
                 docker_command::String)::Nothing
     original_directory::String = pwd()
     my_run(`$(docker_command) login`)
@@ -94,10 +94,10 @@ function push(; image_name::String,
 end
 
 function main()::Nothing
-    const DIR::String = @__DIR__
-    const DOCKER_COMMAND::String = "docker"
-    const CONFIG_FILE_NAME::String = "config.toml"
-    const CONFIG_FILE_PATH::String = joinpath(splitpath(DIR)...,CONFIG_FILE_NAME)
+    DIR::String = @__DIR__
+    DOCKER_COMMAND::String = "docker"
+    CONFIG_FILE_NAME::String = "config.toml"
+    CONFIG_FILE_PATH::String = joinpath(splitpath(DIR)...,CONFIG_FILE_NAME)
     original_directory::String = pwd()
     if length(ARGS) < 2
         error(string("Syntax: julia make.jl COMMAND IMAGE [IMAGE_NAME_PREFIX]\n",
@@ -109,17 +109,17 @@ function main()::Nothing
                      "julia make.jl test julia-1 staging-\n",
                      "julia make.jl push julia-1 staging-\n"))
     end
-    const command::Symbol = Symbol(strip(ARGS[1]))
-    const image_name::String = strip(ARGS[2])
-    const image_name_prefix::String = strip(length(ARGS) == 2 ? "" : ARGS[3])
+    command::Symbol = Symbol(strip(ARGS[1]))
+    image_name::String = strip(ARGS[2])
+    image_name_prefix::String = strip(length(ARGS) == 2 ? "" : ARGS[3])
     config = try
         Pkg.TOML.parsefile(CONFIG_FILE_PATH)
     catch
         Dict()
     end
-    const _image_owner::String = strip(get(config, "image_owner", ""))
-    const image_owner::String = strip(length(_image_owner) == 0 ? "dilumaluthge" : _image_owner)
-    const image_list::Vector{String} = strip.(get(config, "image_list", String[]))
+    _image_owner::String = strip(get(config, "image_owner", ""))
+    image_owner::String = strip(length(_image_owner) == 0 ? "dilumaluthge" : _image_owner)
+    image_list::Vector{String} = strip.(get(config, "image_list", String[]))
     if !(image_name in image_list)
         error(string("image $(image_name) is not in list of images"))
     end
@@ -134,19 +134,19 @@ function main()::Nothing
                 image_name_prefix = image_name_prefix,
                 image_owner = image_owner,
                 image_directory = image_directory,
-                docker_command = docker_command)
+                docker_command = DOCKER_COMMAND)
     elseif command == :test
         test(; image_name = image_name,
                 image_name_prefix = image_name_prefix,
                 image_owner = image_owner,
                 image_directory = image_directory,
-                docker_command = docker_command)
+                docker_command = DOCKER_COMMAND)
     elseif command == :push
         push(; image_name = image_name,
                 image_name_prefix = image_name_prefix,
                 image_owner = image_owner,
                 image_directory = image_directory,
-                docker_command = docker_command)
+                docker_command = DOCKER_COMMAND)
     else
         error(string("command $(string(command)) is not one of build, test, push"))
     end
