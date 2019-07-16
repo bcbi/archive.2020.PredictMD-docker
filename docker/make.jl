@@ -87,7 +87,11 @@ function push(; image_name::String,
                 image_directory::String,
                 docker_command::String)::Nothing
     original_directory::String = pwd()
-    my_run(`$(docker_command) login`)
+    try
+        my_run(`$(docker_command) login`)
+    catch ex
+        @warn("ignoring error: ", exception=ex)
+    end
     cd(image_directory)
     cd("builddir")
     my_run(`$(docker_command) push $(image_owner)/$(image_name_prefix)$(image_name)`)
