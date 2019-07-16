@@ -2,6 +2,8 @@
 
 set -ev
 
+export PATH="${PATH}:${TRAVIS_HOME}/julia/bin"
+
 if [[ "$TRAVIS_BRANCH" == "master" ]]
 then
     export IMAGE_NAME_PREFIX=""
