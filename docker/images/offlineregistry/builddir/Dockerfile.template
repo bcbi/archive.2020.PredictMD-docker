@@ -11,6 +11,10 @@ RUN rm -rf /opt/julia/share/julia/compiled/*
 RUN rm -rf /opt/julia/share/julia/registries/*
 RUN rm -rf /opt/julia/etc/julia/startup.jl
 
+RUN rm -rf /opt/julia*/share/julia/compiled/*
+RUN rm -rf /opt/julia*/share/julia/registries/*
+RUN rm -rf /opt/julia*/etc/julia/startup.jl
+
 RUN mkdir -p /opt/bcbi/predictmd
 RUN cd /opt/bcbi/predictmd && \
     git clone https://github.com/DilumAluthge/OfflineRegistry
@@ -19,7 +23,7 @@ RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
 COPY offline.toml /opt/bcbi/predictmd/OfflineRegistry/offline.toml
 RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
     git config user.name "BCBI Machine Account"
-RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \o
     git config user.email "bcbi-git@brown.edu"
 RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
     git add -A
@@ -38,6 +42,7 @@ RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
 
 RUN find /opt/bcbi -type d -print0 | xargs -0 chmod 755
 RUN find /opt/bcbi -type f -print0 | xargs -0 chmod 644
-RUN find /opt/julia -type d -print0 | xargs -0 chmod 755
-RUN find /opt/julia -type f -print0 | xargs -0 chmod 644
+RUN find /opt/julia* -type d -print0 | xargs -0 chmod 755
+RUN find /opt/julia* -type f -print0 | xargs -0 chmod 644
 RUN chmod 555 /usr/local/bin/julia
+RUN chmod 555 /usr/local/bin/julia*
