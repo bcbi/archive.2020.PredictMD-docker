@@ -27,13 +27,7 @@ pwd
 
 pwd
 cd docker
-pwd
-cd images
-pwd
-cd $IMAGE
-pwd
-
-make __travis-run-test-image__
+julia make.jl test $IMAGE $IMAGE_NAME_PREFIX"
 
 pwd
 cd $TRAVIS_BUILD_DIR

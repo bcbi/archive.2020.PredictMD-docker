@@ -28,30 +28,28 @@ pwd
 pwd
 cd docker
 pwd
-cd images
-pwd
-cd $IMAGE
-pwd
 
-make build
-make test
+
+julia make.jl build $IMAGE $IMAGE_NAME_PREFIX"
+julia make.jl test $IMAGE $IMAGE_NAME_PREFIX"
+
 
 if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
 then
     if [[ "$TRAVIS_BRANCH" == "master" ]]
     then
         echo "$DOCKER_BOT_PASSWORD" | docker login -u "$DOCKER_BOT_USERNAME" --password-stdin
-        make push
+        julia make.jl push $IMAGE $IMAGE_NAME_PREFIX"
     else
         if [[ "$TRAVIS_BRANCH" == "staging" ]]
         then
             echo "$DOCKER_BOT_PASSWORD" | docker login -u "$DOCKER_BOT_USERNAME" --password-stdin
-            make push
+            julia make.jl push $IMAGE $IMAGE_NAME_PREFIX"
         else
             if [[ "$TRAVIS_BRANCH" == "trying" ]]
             then
                 echo "$DOCKER_BOT_PASSWORD" | docker login -u "$DOCKER_BOT_USERNAME" --password-stdin
-                make push
+                julia make.jl push $IMAGE $IMAGE_NAME_PREFIX"
             else
                 :
             fi

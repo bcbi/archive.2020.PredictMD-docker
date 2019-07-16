@@ -59,6 +59,9 @@ function build(; image_name::String,
     cd(image_directory)
     cd("builddir")
     my_run(`$(docker_command) build -t $(image_owner)/$(image_name_prefix)$(image_name) .`)
+    cd(image_directory)
+    cd("testdir")
+    my_run(`$(docker_command) build -t $(image_owner)/$(image_name_prefix)test-$(image_name) .`)
     cd(original_directory)
     return nothing
 end
@@ -71,7 +74,6 @@ function test(; image_name::String,
     original_directory::String = pwd()
     cd(image_directory)
     cd("testdir")
-    my_run(`$(docker_command) build -t $(image_owner)/$(image_name_prefix)test-$(image_name) .`)
     my_run(`$(docker_command) run --user predictmdtestuser --network none -it $(image_owner)/$(image_name_prefix)test-$(image_name) /bin/bash -c "/bin/runtests.sh"`)
     cd(original_directory)
     return nothing
@@ -87,6 +89,7 @@ function push(; image_name::String,
     cd(image_directory)
     cd("builddir")
     my_run(`$(docker_command) push $(image_owner)/$(image_name_prefix)$(image_name)`)
+    cd(image_directory)
     cd("testdir")
     my_run(`$(docker_command) push $(image_owner)/$(image_name_prefix)test-$(image_name)`)
     cd(original_directory)
