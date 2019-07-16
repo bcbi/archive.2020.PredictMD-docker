@@ -81,17 +81,23 @@ function test(; image_name::String,
     return nothing
 end
 
+function login(; image_name::String,
+                image_name_prefix::String,
+                image_owner::String,
+                image_directory::String,
+                docker_command::String)::Nothing
+    original_directory::String = pwd()
+    my_run(`$(docker_command) login`)
+    cd(original_directory)
+    return nothing
+end
+
 function push(; image_name::String,
                 image_name_prefix::String,
                 image_owner::String,
                 image_directory::String,
                 docker_command::String)::Nothing
     original_directory::String = pwd()
-    try
-        my_run(`$(docker_command) login`)
-    catch ex
-        @warn("ignoring error: ", exception=ex)
-    end
     cd(image_directory)
     cd("builddir")
     my_run(`$(docker_command) push $(image_owner)/$(image_name_prefix)$(image_name)`)
@@ -150,6 +156,12 @@ function main()::Nothing
                 image_owner = image_owner,
                 image_directory = image_directory,
                 docker_command = DOCKER_COMMAND)
+    elseif command == :login
+        login(; image_name = image_name,
+                image_name_prefix = image_name_prefix,
+                image_owner = image_owner,
+                image_directory = image_directory,
+                docker_command = DOCKER_COMMAND)
     elseif command == :push
         push(; image_name = image_name,
                 image_name_prefix = image_name_prefix,
@@ -157,7 +169,7 @@ function main()::Nothing
                 image_directory = image_directory,
                 docker_command = DOCKER_COMMAND)
     else
-        error(string("command $(string(command)) is not one of build, test, push"))
+        error(string("command $(string(command)) is not one of build, test, login, push"))
     end
     cd(original_directory)
     return nothing
