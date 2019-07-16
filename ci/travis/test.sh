@@ -29,7 +29,7 @@ pwd
 
 pwd
 cd docker
-julia make.jl test $IMAGE $IMAGE_NAME_PREFIX"
+julia make.jl test "$IMAGE" "$IMAGE_NAME_PREFIX"
 
 pwd
 cd $TRAVIS_BUILD_DIR
