@@ -1,4 +1,4 @@
-FROM dilumaluthge/offlineregistry
+FROM {{image_owner}}/{{image_name_prefix}}offlineregistry
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 

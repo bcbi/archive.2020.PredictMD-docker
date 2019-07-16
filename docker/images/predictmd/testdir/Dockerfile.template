@@ -1,4 +1,4 @@
-FROM dilumaluthge/predictmd
+FROM {{image_owner}}/{{image_name_prefix}}predictmd
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 

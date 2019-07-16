@@ -1,4 +1,4 @@
-FROM dilumaluthge/latex-for-plotting
+FROM {{image_owner}}/{{image_name_prefix}}latex-for-plotting
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 

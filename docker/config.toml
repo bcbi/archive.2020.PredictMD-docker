@@ -1,0 +1,8 @@
+image_owner = "dilumaluthge"
+
+image_list = [
+    "julia-1",
+    "latex-for-plotting",
+    "offlineregistry",
+    "predictmd",
+    ]

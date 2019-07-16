@@ -1,4 +1,4 @@
-FROM dilumaluthge/julia-1
+FROM {{image_owner}}/{{image_name_prefix}}julia-1
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
