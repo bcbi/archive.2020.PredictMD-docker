@@ -1,7 +1,8 @@
 # PredictMD-docker: Docker and Singularity images for [PredictMD](https://predictmd.net)
 
 <p>
-<a href="https://doi.org/10.5281/zenodo.1291209">
+<a
+href="https://doi.org/10.5281/zenodo.1291209">
 <img
 src="https://zenodo.org/badge/109460252.svg"/>
 </a>
@@ -9,13 +10,14 @@ src="https://zenodo.org/badge/109460252.svg"/>
 
 <p>
 <a
-href="https://bors.tech">
+href="https://app.bors.tech/repositories/11594">
 <img
-src="https://bors.tech/images/badge_small.svg"/>
-</a> <a
-href="https://travis-ci.com/DilumAluthge/PredictMD-docker/branches">
+src="https://bors.tech/images/badge_small.svg"
+alt="Bors enabled"></a>
+<a
+href="https://travis-ci.com/aluthge/PredictMD-docker/branches">
 <img
-src="https://travis-ci.com/DilumAluthge/PredictMD-docker.svg?branch=master"/>
+src="https://travis-ci.com/aluthge/PredictMD-docker.svg?branch=master"/>
 </a>
 </p>
 

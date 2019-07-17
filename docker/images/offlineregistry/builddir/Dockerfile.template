@@ -1,0 +1,60 @@
+FROM {{image_owner}}/{{image_name_prefix}}latex-for-plotting
+MAINTAINER Dilum Aluthge <dilum@aluthge.com>
+
+RUN apt-get update
+RUN apt-get -yq dist-upgrade
+RUN apt-get update
+RUN apt-get -yq dist-upgrade
+RUN apt-get clean
+
+RUN rm -rf /opt/julia*/share/julia/compiled/*
+RUN rm -rf /opt/julia*/share/julia/registries/*
+RUN rm -rf /opt/julia*/etc/julia/startup.jl
+
+RUN rm -rf /opt/julia/share/julia/compiled/*
+RUN rm -rf /opt/julia/share/julia/registries/*
+RUN rm -rf /opt/julia/etc/julia/startup.jl
+
+RUN mkdir -p /opt/bcbi/predictmd
+RUN cd /opt/bcbi/predictmd && \
+    git clone https://github.com/DilumAluthge/OfflineRegistry
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    rm -rf offline.toml
+COPY offline.toml /opt/bcbi/predictmd/OfflineRegistry/offline.toml
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.name "BCBI Machine Account"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.email "bcbi-git@brown.edu"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git add -A
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git commit --author="BCBI Machine Account <bcbi-git@brown.edu>" -m "Automated commit" || true
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    julia make.jl "BCBIOfflineRegistry" "226ccab6-caf5-412c-80c4-6c7e3979fa0f" "BCBI Machine Account" "bcbi-git@brown.edu"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.name "BCBI Machine Account"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git config user.email "bcbi-git@brown.edu"
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git add -A
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
+    git commit --author="BCBI Machine Account <bcbi-git@brown.edu>" -m "Automated commit" || true
+
+RUN rm -rf /opt/julia*/share/julia/compiled/*
+RUN rm -rf /opt/julia/share/julia/compiled/*
+
+RUN mkdir -p /opt/bcbi/predictmd
+RUN mkdir -p /opt/julia1.0.4/etc/julia
+RUN mkdir -p /opt/julia1.1.1/etc/julia
+RUN mkdir -p /opt/julia/etc/julia
+
+RUN touch /opt/julia/README.md
+
+RUN find /opt/bcbi -type d -print0 | xargs -0 chmod 755
+RUN find /opt/bcbi -type f -print0 | xargs -0 chmod 644
+RUN find /opt/julia* -type d -print0 | xargs -0 chmod 755
+RUN find /opt/julia* -type f -print0 | xargs -0 chmod 644
+RUN find /opt/julia -type d -print0 | xargs -0 chmod 755
+RUN find /opt/julia -type f -print0 | xargs -0 chmod 644
+RUN chmod 555 /usr/local/bin/julia*
+RUN chmod 555 /usr/local/bin/julia

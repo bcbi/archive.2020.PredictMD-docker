@@ -1,8 +1,7 @@
-FROM dilumaluthge/predictmd
+FROM {{image_owner}}/{{image_name_prefix}}julia-1
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
-COPY runtests.sh /bin/runtests.sh
 COPY runtests.sh /bin/runtests.sh
 
 RUN useradd -ms /bin/bash predictmdtestuser

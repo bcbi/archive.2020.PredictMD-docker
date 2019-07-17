@@ -1,5 +1,4 @@
-# FROM ubuntu:18.10
-FROM browndatasci/sh-julia:latest
+FROM {{image_owner}}/{{image_name_prefix}}julia-1
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 

@@ -1,4 +1,4 @@
-FROM dilumaluthge/offlineregistry
+FROM {{image_owner}}/{{image_name_prefix}}offlineregistry
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
 RUN apt-get update
@@ -10,11 +10,20 @@ RUN apt-get clean
 RUN mkdir -p /opt/bcbi/predictmd
 COPY startup-predictmd.jl /opt/bcbi/predictmd/bin/startup.jl
 
+RUN mkdir -p /opt/julia1.0.4/etc/julia
+COPY startup-system.jl /opt/julia1.0.4/etc/julia/startup.jl
+
+RUN mkdir -p /opt/julia1.1.1/etc/julia
+COPY startup-system.jl /opt/julia1.1.1/etc/julia/startup.jl
+
 RUN mkdir -p /opt/julia/etc/julia
 COPY startup-system.jl /opt/julia/etc/julia/startup.jl
 
 RUN find /opt/bcbi -type d -print0 | xargs -0 chmod 755
 RUN find /opt/bcbi -type f -print0 | xargs -0 chmod 644
+RUN find /opt/julia* -type d -print0 | xargs -0 chmod 755
+RUN find /opt/julia* -type f -print0 | xargs -0 chmod 644
 RUN find /opt/julia -type d -print0 | xargs -0 chmod 755
 RUN find /opt/julia -type f -print0 | xargs -0 chmod 644
+RUN chmod 555 /usr/local/bin/julia*
 RUN chmod 555 /usr/local/bin/julia

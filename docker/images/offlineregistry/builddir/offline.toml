@@ -1,0 +1,69 @@
+[include]
+registries = [
+    { url = "https://github.com/JuliaRegistries/General.git", download_all_packages = false },
+    { url = "https://github.com/bcbi/BCBIRegistry.git", download_all_packages = false },
+]
+projects = [
+    { url = "https://raw.githubusercontent.com/bcbi/PredictMD.jl/master/Project.toml" },
+    { url = "https://raw.githubusercontent.com/bcbi/PredictMDExtra.jl/master/Project.toml" },
+    { url = "https://raw.githubusercontent.com/bcbi/PredictMDFull.jl/master/Project.toml" },
+    { url = "https://raw.githubusercontent.com/bcbi/PredictMD.jl/master/test/Project.toml" },
+    { url = "https://raw.githubusercontent.com/bcbi/PredictMDExtra.jl/master/test/Project.toml" },
+    { url = "https://raw.githubusercontent.com/bcbi/PredictMDFull.jl/master/test/Project.toml" },
+]
+manifests = []
+
+[exclude]
+packages = [
+    "julia",
+    "LibGit2",
+]
+
+[build]
+packages = [
+    [
+        { name = "PredictMD"},
+        { name = "PredictMDAPI"},
+        { name = "PredictMDExtra"},
+        { name = "PredictMDFull"},
+    ],
+    [
+        { name = "PredictMD"},
+    ],
+    [
+        { name = "PredictMDAPI"},
+    ],
+    [
+        { name = "PredictMDExtra"},
+    ],
+    [
+        { name = "PredictMDFull"},
+    ],
+    [
+        { name = "PredictMD", branch = "master"},
+        { name = "PredictMDAPI", branch = "master"},
+        { name = "PredictMDExtra", branch = "master"},
+        { name = "PredictMDFull", branch = "master"},
+    ],
+    [
+        { name = "PredictMD", branch = "master"},
+    ],
+    [
+        { name = "PredictMDAPI", branch = "master"},
+    ],
+    [
+        { name = "PredictMDExtra", branch = "master"},
+    ],
+    [
+        { name = "PredictMDFull", branch = "master"},
+    ],
+]
+
+[warmup]
+packages = [
+    "DataDeps",
+    "Flux",
+]
+
+[move_out_of_depot]
+packages = []

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -ev
+
+echo $JULIA_DEBUG
+
+echo $PREDICTMD_OPEN_PLOTS_DURING_TESTS
+
+echo $IMAGE
+
+echo $PREDICTMD_TEST_GROUP

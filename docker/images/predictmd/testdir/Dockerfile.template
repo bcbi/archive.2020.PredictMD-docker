@@ -1,7 +1,8 @@
-FROM dilumaluthge/offlineregistry
+FROM {{image_owner}}/{{image_name_prefix}}predictmd
 
 MAINTAINER Dilum Aluthge <dilum@aluthge.com>
 
+COPY runtests.sh /bin/runtests.sh
 COPY runtests.sh /bin/runtests.sh
 
 RUN useradd -ms /bin/bash predictmdtestuser
