@@ -10,10 +10,11 @@ src="https://zenodo.org/badge/109460252.svg"/>
 
 <p>
 <a
-href="https://app.bors.tech/repositories/11594">
+href="https://app.bors.tech/repositories/12699">
 <img
 src="https://bors.tech/images/badge_small.svg"
-alt="Bors enabled"></a>
+alt="Bors enabled">
+</a>
 <a
 href="https://travis-ci.com/aluthge/PredictMD-docker/branches">
 <img
@@ -28,4 +29,43 @@ Singularity images for [PredictMD](https://predictmd.net).
 
 | Name | Dockerfile | Image |
 | ---- | ---------- | ----- |
-| `dilumaluthge/predictmd` | [Dockerfile](/docker/images/predictmd/builddir/Dockerfile) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+| `dilumaluthge/predictmd` | [Dockerfile.template](/docker/images/predictmd/builddir/Dockerfile.template) | <a href="https://hub.docker.com/r/dilumaluthge/predictmd"><img src="https://images.microbadger.com/badges/image/dilumaluthge/predictmd.svg"></a> |
+
+## Instructions for use
+Download and start the container by running the following line:
+```bash
+docker run --name predictmd -it dilumaluthge/predictmd /bin/bash
+```
+
+Once you are inside the container, you can start Julia by running the following line:
+```bash
+julia
+```
+
+In Julia, run the following line to load PredictMD:
+```julia
+import PredictMDFull
+```
+
+You can run the test suite by running the following four lines in Julia:
+```julia
+import Pkg
+Pkg.test("PredictMD")
+Pkg.test("PredictMDExtra")
+Pkg.test("PredictMDFull")
+```
+
+After you have exited the container, you can return to it by running the following line:
+```bash
+docker start -ai predictmd
+```
+
+To delete your container, run the following line:
+```bash
+docker container rm -f predictmd
+```
+
+To also delete the downloaded image, run the following line:
+```bash
+docker image rm -f dilumaluthge/predictmd
+```
