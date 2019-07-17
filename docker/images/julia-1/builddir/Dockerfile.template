@@ -131,10 +131,10 @@ RUN mkdir -p /opt/scripts
 # RUN ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so /opt/julia/share/julia/packages/MySQL/owtkt/deps/usr/lib/libmariadb.so
 # ENV LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN y
 
-RUN rm -rf /opt/julia1.0.4/share/julia/compiled/* && \
+RUN rm -rf /opt/julia1.0.4/share/julia/compiled && \
     mkdir -p /opt/julia1.0.4/share/julia/compiled
 
-RUN rm -rf /opt/julia1.1.1/share/julia/compiled/* && \
+RUN rm -rf /opt/julia1.1.1/share/julia/compiled && \
     mkdir -p /opt/julia1.1.1/share/julia/compiled
 
 # expose notebook and mysql port
