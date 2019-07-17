@@ -23,7 +23,7 @@ RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
 COPY offline.toml /opt/bcbi/predictmd/OfflineRegistry/offline.toml
 RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
     git config user.name "BCBI Machine Account"
-RUN cd /opt/bcbi/predictmd/OfflineRegistry && \o
+RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
     git config user.email "bcbi-git@brown.edu"
 RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
     git add -A
