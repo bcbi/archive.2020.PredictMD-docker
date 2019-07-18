@@ -42,19 +42,3 @@ RUN cd /opt/bcbi/predictmd/OfflineRegistry && \
 
 RUN rm -rf /opt/julia*/share/julia/compiled/*
 RUN rm -rf /opt/julia/share/julia/compiled/*
-
-RUN mkdir -p /opt/bcbi/predictmd
-RUN mkdir -p /opt/julia1.0.4/etc/julia
-RUN mkdir -p /opt/julia1.1.1/etc/julia
-RUN mkdir -p /opt/julia/etc/julia
-
-RUN touch /opt/julia/README.md
-
-RUN find /opt/bcbi -type d -print0 | xargs -0 chmod 755
-RUN find /opt/bcbi -type f -print0 | xargs -0 chmod 644
-RUN find /opt/julia* -type d -print0 | xargs -0 chmod 755
-RUN find /opt/julia* -type f -print0 | xargs -0 chmod 644
-RUN find /opt/julia -type d -print0 | xargs -0 chmod 755
-RUN find /opt/julia -type f -print0 | xargs -0 chmod 644
-RUN chmod 555 /usr/local/bin/julia*
-RUN chmod 555 /usr/local/bin/julia
