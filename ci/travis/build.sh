@@ -48,7 +48,7 @@ then
             if [[ "$TRAVIS_BRANCH" == "trying" ]]
             then
                 echo "$DOCKER_BOT_PASSWORD" | docker login -u "$DOCKER_BOT_USERNAME" --password-stdin
-                julia make.jl "$IMAGE" "$IMAGE_NAME_PREFIX"
+                julia make.jl push "$IMAGE" "$IMAGE_NAME_PREFIX"
             else
                 :
             fi
