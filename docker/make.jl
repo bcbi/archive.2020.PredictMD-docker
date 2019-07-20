@@ -73,10 +73,16 @@ function test(; image_name::String,
     original_directory::String = pwd()
     cd(image_directory)
     cd("testdir")
-    if ispath("echo-env.sh")
-        my_run(`./echo-env.sh`)
+    test_args::Vector{String} = Vector{String}(undef, 0)
+    if ispath("get-test-args.sh")
+        for x in split(strip(read(`./get-test-args.sh`, String)))
+            if length(strip(x)) > 0
+                push!(test_args, strip(x))
+            end
+        end
     end
-    my_run(`$(docker_command) run --user predictmdtestuser --network none -it $(image_owner)/$(image_name_prefix)test-$(image_name) /bin/bash -c "/bin/runtests.sh"`)
+    runtests = join(vcat(["/bin/runtests.sh"], test_args), " ")
+    my_run(`$(docker_command) run --user predictmdtestuser --network none -it $(image_owner)/$(image_name_prefix)test-$(image_name) /bin/bash -c "$(runtests)"`)
     cd(original_directory)
     return nothing
 end
