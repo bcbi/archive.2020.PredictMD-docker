@@ -1,0 +1,5 @@
+[package_url_list]
+PredictMD = "https://github.com/bcbi/PredictMD.jl.git"
+PredictMDAPI = "https://github.com/bcbi/PredictMDAPI.jl.git"
+PredictMDExtra = "https://github.com/bcbi/PredictMDExtra.jl.git"
+PredictMDFull = "https://github.com/bcbi/PredictMDFull.jl.git"

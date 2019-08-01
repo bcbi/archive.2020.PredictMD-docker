@@ -15,15 +15,22 @@ function apply_template(original::String,
     return content
 end
 
+
 function generate_dockerfiles(; directory::String,
                                 image_name_prefix::String,
                                 image_owner::String,
                                 image_list::Vector{String})::Nothing
+    original_directory::String = pwd()
     templates = ["{{image_owner}}" => "$(image_owner)",
                  "{{image_name_prefix}}" => "$(image_name_prefix)"]
     for image_name in image_list
         image_directory = joinpath(directory, "images", image_name)
         builddir = joinpath(image_directory, "builddir")
+        if isfile(joinpath(builddir, "before_build.jl"))
+            cd(builddir)
+            include(joinpath(builddir, "before_build.jl"))
+            cd(original_directory)
+        end
         build_in_filename = joinpath(builddir, "Dockerfile.template")
         build_out_filename = joinpath(builddir, "Dockerfile")
         build_in = read(build_in_filename, String)
@@ -46,6 +53,7 @@ function generate_dockerfiles(; directory::String,
         end
         @info("Wrote file $(test_out_filename)")
     end
+    cd(original_directory)
     return nothing
 end
 
