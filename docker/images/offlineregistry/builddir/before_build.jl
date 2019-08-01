@@ -27,8 +27,9 @@ latest_semver_version(repo_url) = maximum(all_versions(repo_url))
 function main()
     dir_containing_this_file::String = joinpath(splitpath(@__DIR__)...)
 
-    package_url_list = joinpath(dir_containing_this_file, "package_url_list.toml")
-    package_name_to_url = Pkg.TOML.parsefile(a)["package_url_list"]
+    package_name_to_url = Pkg.TOML.parsefile(
+        joinpath(dir_containing_this_file, "package_url_list.toml")
+        )["package_url_list"]
     PREDICTMD_URL = package_name_to_url["PredictMD"]
     PREDICTMDAPI_URL = package_name_to_url["PredictMDAPI"]
     PREDICTMDEXTRA_URL = package_name_to_url["PredictMDExtra"]
@@ -52,3 +53,5 @@ function main()
 
     @info("Wrote file $(offline_toml_out_path)")
 end
+
+main()
