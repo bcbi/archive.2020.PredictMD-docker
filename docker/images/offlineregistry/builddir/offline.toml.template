@@ -22,39 +22,15 @@ packages = [
 [build]
 packages = [
     [
-        { name = "PredictMD"},
-        { name = "PredictMDAPI"},
-        { name = "PredictMDExtra"},
-        { name = "PredictMDFull"},
-    ],
-    [
-        { name = "PredictMD"},
-    ],
-    [
-        { name = "PredictMDAPI"},
-    ],
-    [
-        { name = "PredictMDExtra"},
-    ],
-    [
-        { name = "PredictMDFull"},
+        { name = "PredictMD", version = "{{PREDICTMD_LATEST_SEMVER_VERSION}}"},
+        { name = "PredictMDAPI", version = "{{PREDICTMDAPI_LATEST_SEMVER_VERSION}}"},
+        { name = "PredictMDExtra", version = "{{PREDICTMDEXTRA_LATEST_SEMVER_VERSION}}"},
+        { name = "PredictMDFull", version = "{{PREDICTMDFULL_LATEST_SEMVER_VERSION}}"},
     ],
     [
         { name = "PredictMD", branch = "master"},
         { name = "PredictMDAPI", branch = "master"},
         { name = "PredictMDExtra", branch = "master"},
-        { name = "PredictMDFull", branch = "master"},
-    ],
-    [
-        { name = "PredictMD", branch = "master"},
-    ],
-    [
-        { name = "PredictMDAPI", branch = "master"},
-    ],
-    [
-        { name = "PredictMDExtra", branch = "master"},
-    ],
-    [
         { name = "PredictMDFull", branch = "master"},
     ],
 ]

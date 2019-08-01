@@ -3,3 +3,5 @@
 *.simg
 
 Dockerfile
+Manifest.toml
+offline.toml
