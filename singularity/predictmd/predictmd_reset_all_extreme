@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+set -v
+
+rm -rf ~/.julia.isolated
+rm -rf ~/.julia
