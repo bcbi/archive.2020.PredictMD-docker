@@ -16,10 +16,11 @@ function all_versions(repo_url::AbstractString)
             push!(_all_versions, _v)
         end
     end
-    unique!(_all_versions)
-    sort!(_all_versions)
+    _all_versions_stripped = strip.(_all_versions)
+    unique!(_all_versions_stripped)
+    sort!(_all_versions_stripped)
     rm(_temp_dir; force = true, recursive = true)
-    return _all_versions
+    return _all_versions_stripped
 end
 
 latest_semver_version(repo_url) = maximum(all_versions(repo_url))
