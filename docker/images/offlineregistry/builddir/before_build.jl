@@ -16,9 +16,9 @@ function all_versions(repo_url::AbstractString)
             push!(_all_versions, _v)
         end
     end
+    rm(_temp_dir; force = true, recursive = true)
     unique!(_all_versions)
     sort!(_all_versions)
-    rm(_temp_dir; force = true, recursive = true)
     return _all_versions
 end
 
